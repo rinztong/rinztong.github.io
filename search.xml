@@ -4,6 +4,7 @@
     <title>Hello World</title>
     <url>/2023/12/22/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<span id="more"></span>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
@@ -19,26 +20,123 @@
 ]]></content>
   </entry>
   <entry>
+    <title>NexT主题个性化配置</title>
+    <url>/2023/12/29/hexo-and-next-configuration/</url>
+    <content><![CDATA[]]></content>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo下如何写一篇新博客</title>
+    <url>/2023/12/29/hexo-basic/</url>
+    <content><![CDATA[<h3 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h3><p>开启文章资源文件夹<br>把图片放入与文章文件名相同的文件夹后，通过下面的标签插件引入：</p>
+<pre class="line-numbers language-none"><code class="language-none">&#123;% asset_img example.jpg This is an example image %&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>]]></content>
+      <tags>
+        <tag>hexo</tag>
+        <tag>markdown</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>linux下搭建c语言开发环境</title>
+    <url>/2023/12/29/how-to-build-c-dev-env/</url>
+    <content><![CDATA[]]></content>
+      <tags>
+        <tag>linux</tag>
+        <tag>vscode</tag>
+        <tag>c</tag>
+        <tag>cmake</tag>
+        <tag>gdb</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>如何通过hexo+github搭建个人博客</title>
     <url>/2023/12/24/how-to-build-my-own-blog/</url>
     <content><![CDATA[<p>本文主要介绍如何通过hexo+github搭建个人博客</p>
 <span id="more"></span>
 <p>环境：Ubuntu 22.04</p>
-<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h3 id="在github注册一个账号"><a href="#在github注册一个账号" class="headerlink" title="在github注册一个账号"></a>在github注册一个账号</h3><p>在<a href="https://github.com/">github</a>按照提示注册一个账号，访问不稳定，如果打不开可以多尝试几次</p>
-<h3 id="安装以及配置git"><a href="#安装以及配置git" class="headerlink" title="安装以及配置git"></a>安装以及配置git</h3><pre class="line-numbers language-bash" data-language="bash"><div class="caption"><span>install</span></div><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> <span class="token function">git</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> b <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d \n"</span><span class="token punctuation">,</span> a <span class="token operator">+</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<img src="/2023/12/24/how-to-build-my-own-blog/2023-12-26_15-54-47.png" class="" title="This is an example image">]]></content>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h3 id="在github注册一个账号"><a href="#在github注册一个账号" class="headerlink" title="在github注册一个账号"></a>在github注册一个账号</h3><p>在<a href="https://github.com/">github</a>按照提示注册一个账号。<br>注意<strong>邮箱</strong>（email，全网站唯一），<strong>用户名</strong>（username，全网站唯一），<strong>名字</strong>（name，类似于昵称，可以全网站不唯一）。</p>
+<h3 id="安装以及配置git"><a href="#安装以及配置git" class="headerlink" title="安装以及配置git"></a>安装以及配置git</h3><h4 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> <span class="token function">git</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>安装完成后，可输入<code>git --version</code>检查是否安装成功。</p>
+<h4 id="配置git"><a href="#配置git" class="headerlink" title="配置git"></a>配置git</h4><p>配置git的名字，可随意填写，会在提交commit的作者中体现，<a href="https://docs.github.com/en/get-started/getting-started-with-git/setting-your-username-in-git">github的文档</a>有说明可参考。我们可以设置为<mark>github的名字</mark>。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> config <span class="token parameter variable">--global</span> user.name <span class="token string">"yourname"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>配置提交代码时使用的邮箱，<mark>邮箱建议与注册github账号的邮箱一致</mark>，这样提交的代码能与你注册的github账号相关联：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> config <span class="token parameter variable">--global</span> user.email <span class="token string">"youremail"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>以下配置让你在命令行操作远程仓库时，只需要输入一次用户名和密码：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> config <span class="token parameter variable">--global</span> credential.helper store<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>在实操中，发现操作github的远程仓库不能通过输入用户名和密码的方式，只能通过SSH的方式。所以需要先生成SSH密钥，其中youremail替换为注册github使用的邮箱：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-keygen <span class="token parameter variable">-t</span> rsa <span class="token parameter variable">-C</span> <span class="token string">"youremail"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>然后在linux当前用户的Home目录下(&#x2F;home&#x2F;currentuser)找到<code>.ssh</code>文件夹。若需要图形化操作，Ubuntu可以通过<code>ctrl+h</code>来显示文件夹下的隐藏文件及文件夹。<br>打开github，找到用户的<code>Settings-&gt;SSH and GPG keys-&gt;New SSH key</code>。<code>Title</code>随意填写，<code>Key type</code>为<code>Authentication Key</code>，将<code>.ssh</code>目录下<code>id_rsa.pub</code>的内容复制到<code>Key</code>中。填写完毕后点击<code>Add SSH key</code>即可。<br>在命令行第一次操作远程仓库时会显示：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">This key is not known by any other names
+Are you sure you want to <span class="token builtin class-name">continue</span> connecting <span class="token punctuation">(</span>yes/no/<span class="token punctuation">[</span>fingerprint<span class="token punctuation">]</span><span class="token punctuation">)</span>? <span class="token function">yes</span>
+Warning: Permanently added <span class="token string">'github.com'</span> <span class="token punctuation">(</span>ED25519<span class="token punctuation">)</span> to the list of known hosts.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>如上面的代码块输入<code>yes</code>即可。</p>
+<h3 id="安装nodejs和npm"><a href="#安装nodejs和npm" class="headerlink" title="安装nodejs和npm"></a>安装nodejs和npm</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> nodejs
+<span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> <span class="token function">npm</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>安装完成后，可输入以下命令检查是否安装成功：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">node</span> <span class="token parameter variable">-v</span>
+<span class="token function">npm</span> <span class="token parameter variable">-v</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>注：如果需要安装指定版本的nodejs，<a href="https://github.com/nodesource/distributions">请参考</a></p>
+<h3 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> <span class="token parameter variable">-g</span> hexo-cli<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>可输入<code>hexo -v</code>检查是否安装成功。</p>
+<p>以上，我们完成了所有准备工作。</p>
+<h2 id="开始搭建个人博客"><a href="#开始搭建个人博客" class="headerlink" title="开始搭建个人博客"></a>开始搭建个人博客</h2><p>在开始之前，建议先阅读<a href="https://zhuanlan.zhihu.com/p/348093645">这篇文章</a>去了解hexo+github搭建个人博客的大致原理，这样能更加清楚后续的每一步是为了做什么。</p>
+<h3 id="指定一个文件夹建立网站"><a href="#指定一个文件夹建立网站" class="headerlink" title="指定一个文件夹建立网站"></a>指定一个文件夹建立网站</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">hexo init sitefolder<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>其中<code>sitefolder</code>为建立网站的文件夹的路径，包含文件夹名。后续我们个人博客的所需要的所有资源都在这个文件夹下。<br>然后执行：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> sitefolder
+<span class="token function">npm</span> <span class="token function">install</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>以上所有操作都完成后，我们可以看到<code>sitefolder</code>中主要包含以下目录：</p>
+<pre class="line-numbers language-none"><code class="language-none">.
+├── _config.yml   #hexo的配置文件
+├── package.json  #项目的依赖文件
+├── node_modules  #所需的一些插件以及nodejs模块
+├── scaffolds     #模板文件夹
+├── source        #源文件夹
+|   └── _posts
+└── themes        #主题文件夹<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>部分目录的具体用途后续会在阐述如何写博客的文章中展开，目前我们无需关心。可以注意到，在<code>source/_posts</code>目录下hexo已为我们创建了第一篇博客<code>hello-world.md</code>。</p>
+<h3 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h3><p>hexo有很多<a href="https://hexo.io/themes/">主题</a>可供选择，在建立网站的步骤中，hexo为我们设置了默认的主题landscape。如果需要更换其他主题，可直接到相关主题的github或者官网查看如何安装与配置。在这里我们更换为NexT主题，将命令行的当前目录切换至<code>sitefolder</code>后输入：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> hexo-theme-next
+<span class="token function">npm</span> <span class="token function">install</span> css<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>然后打开<code>sitefolder</code>下hexo的配置文件<code>_config.yml</code>，修改<code>theme</code>的值为<code>next</code>即可：</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><div class="caption"><span>Hexo config file</span></div><code class="language-yaml"><span class="token key atrule">theme</span><span class="token punctuation">:</span> next<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="生成静态页面"><a href="#生成静态页面" class="headerlink" title="生成静态页面"></a>生成静态页面</h3><p>将命令行的当前目录切换至<code>sitefolder</code>后输入<code>hexo generate</code>或者<code>hexo g</code>来生成静态页面。执行完毕后会发现<code>sitefolder</code>下多了<code>public</code>目录，这个目录下就是可供浏览器访问的所有静态页面，后续给github提交的也只需public下的所有内容。<br>我们可以使用<code>hexo server</code>或者<code>hexo s</code>启动本地服务器，在浏览器中访问<code>http://localhost:4000/</code>就能预览网站了，在这里我们能看到<code>hello-world.md</code>所生成的对应网页。</p>
+<h3 id="部署网站"><a href="#部署网站" class="headerlink" title="部署网站"></a>部署网站</h3><p>我们使用github pages来部署网站，有关github pages，<a href="https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site">github的文档</a>有说明可参考。<br>在此之前，我们需要新建一个仓库。仓库名有特殊要求，必须是<code>username.github.io</code>，<code>username</code>为注册github时全网站唯一的用户名，其余保持不变，直接点击<code>Create repository</code>创建仓库即可。<br>hexo提供了<code>hexo deploy</code>命令，可以将public目录下的内容直接推送至远程仓库。我们在hexo的配置文件<code>_config.yml</code>中指定远程仓库：</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><div class="caption"><span>Hexo config file</span></div><code class="language-yaml"><span class="token key atrule">deploy</span><span class="token punctuation">:</span>
+  <span class="token key atrule">type</span><span class="token punctuation">:</span> git
+  <span class="token key atrule">repo</span><span class="token punctuation">:</span> git@github.com<span class="token punctuation">:</span>username/username.github.io.git
+  <span class="token key atrule">branch</span><span class="token punctuation">:</span> master<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>其中<code>repo</code>后为克隆仓库的SSH地址。<br>配置好后，将命令行的当前目录切换至<code>sitefolder</code>后输入<code>hexo deploy</code>，完成推送。<br>最后，我们进入<code>username.github.io</code>仓库的<code>Settings-&gt;Pages</code>，在<code>Build and deployment</code>中<code>Source</code>选择<code>Deploy from a branch</code>，<code>Branch</code>选择<code>master</code>，<code>folder</code>选择<code>/(root)</code>，点击<code>Save</code>即可。更详细可参考<a href="https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site">这篇github文档</a>。</p>
+<p>至此，我们就可以通过<code>https://username.github.io/</code>访问个人博客了。</p>
+]]></content>
       <categories>
         <category>环境搭建</category>
       </categories>
       <tags>
         <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何阅读linux源码</title>
+    <url>/2023/12/29/how-to-read-linux-source/</url>
+    <content><![CDATA[]]></content>
+      <tags>
+        <tag>linux</tag>
+        <tag>vscode</tag>
+        <tag>cscope</tag>
+        <tag>vim</tag>
+        <tag>clangd</tag>
+        <tag>bear</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用qemu调试linux kernel</title>
+    <url>/2023/12/29/how-to-use-qemu-to-dbg-linux/</url>
+    <content><![CDATA[]]></content>
+      <tags>
+        <tag>linux</tag>
+        <tag>qemu</tag>
+        <tag>arm64</tag>
       </tags>
   </entry>
 </search>
