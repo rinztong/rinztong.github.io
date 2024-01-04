@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"rinztong.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"rinztong.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
     <meta property="og:type" content="website">
 <meta property="og:title" content="Rin">
@@ -202,7 +202,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/12/29/how-to-use-qemu-to-dbg-linux/" class="post-title-link" itemprop="url">使用qemu调试linux kernel</a>
+          <a href="/2023/12/29/how-to-use-qemu-to-dbg-linux/" class="post-title-link" itemprop="url">使用qemu调试arm64 linux kernel</a>
         </h2>
 
         <div class="post-meta-container">
@@ -212,9 +212,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2023-12-29 21:04:49 / 修改时间：21:31:53" itemprop="dateCreated datePublished" datetime="2023-12-29T21:04:49+08:00">2023-12-29</time>
+      <time title="创建时间：2023-12-29 21:04:49" itemprop="dateCreated datePublished" datetime="2023-12-29T21:04:49+08:00">2023-12-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-01-05 00:10:04" itemprop="dateModified" datetime="2024-01-05T00:10:04+08:00">2024-01-05</time>
     </span>
 
   
@@ -224,14 +230,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>0</span>
+      <span>2.6k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>10 分钟</span>
     </span>
 </div>
 
@@ -242,7 +248,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          
+          <p>操作系统：Ubuntu 22.04<br>linux源码版本：4.1.10<br>下文基于<a href="/2023/12/29/how-to-read-linux-source/" title="如何阅读linux源码">如何阅读linux源码</a>中的vscode、clangd方式。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/12/29/how-to-use-qemu-to-dbg-linux/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -296,9 +310,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2023-12-29 20:51:15 / 修改时间：21:31:53" itemprop="dateCreated datePublished" datetime="2023-12-29T20:51:15+08:00">2023-12-29</time>
+      <time title="创建时间：2023-12-29 20:51:15" itemprop="dateCreated datePublished" datetime="2023-12-29T20:51:15+08:00">2023-12-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-01-05 00:09:43" itemprop="dateModified" datetime="2024-01-05T00:09:43+08:00">2024-01-05</time>
     </span>
 
   
@@ -308,14 +328,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>0</span>
+      <span>3.6k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>13 分钟</span>
     </span>
 </div>
 
@@ -326,7 +346,21 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          
+          <p>本文提供三种方法阅读linux源码：</p>
+<ul>
+<li>在线阅读</li>
+<li>vim、cscope</li>
+<li>vscode、clangd（推荐）</li>
+</ul>
+<p>操作系统：Ubuntu 22.04</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/12/29/how-to-read-linux-source/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -380,9 +414,24 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2023-12-29 20:44:26 / 修改时间：21:31:53" itemprop="dateCreated datePublished" datetime="2023-12-29T20:44:26+08:00">2023-12-29</time>
+      <time title="创建时间：2023-12-29 20:44:26" itemprop="dateCreated datePublished" datetime="2023-12-29T20:44:26+08:00">2023-12-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-01-02 22:49:41" itemprop="dateModified" datetime="2024-01-02T22:49:41+08:00">2024-01-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" itemprop="url" rel="index"><span itemprop="name">环境搭建</span></a>
+        </span>
     </span>
 
   
@@ -392,14 +441,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>0</span>
+      <span>904</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>3 分钟</span>
     </span>
 </div>
 
@@ -410,7 +459,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          
+          <p>本文使用vscode、gcc、cmake以及gdb来搭建c语言开发环境<br>操作系统：Ubuntu 22.04<br>架构：x86_64&#x2F;amd64&#x2F;x64</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/12/29/how-to-build-c-dev-env/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -464,9 +521,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2023-12-29 20:13:26 / 修改时间：20:49:59" itemprop="dateCreated datePublished" datetime="2023-12-29T20:13:26+08:00">2023-12-29</time>
+      <time title="创建时间：2023-12-29 20:13:26" itemprop="dateCreated datePublished" datetime="2023-12-29T20:13:26+08:00">2023-12-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-01-01 17:43:43" itemprop="dateModified" datetime="2024-01-01T17:43:43+08:00">2024-01-01</time>
     </span>
 
   
@@ -476,14 +539,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>0</span>
+      <span>1.7k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>6 分钟</span>
     </span>
 </div>
 
@@ -494,7 +557,16 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          
+          <p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">hexo官网文档</a>和<a target="_blank" rel="noopener" href="https://theme-next.js.org/docs/">NexT主题官网文档</a>有更多更详细的内容。<a target="_blank" rel="noopener" href="https://github.com/hexo-next/hexo-next.github.io">NexT主题官网源码</a>更是能看到<a target="_blank" rel="noopener" href="https://theme-next.js.org/">NexT主题官网</a>的对应源码，可供个人配置参考。本文只描述我个人的配置。</p>
+<p>版本：<br>hexo 7.0<br>NexT 8.19.1</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/12/29/hexo-and-next-configuration/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -538,7 +610,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/12/29/hexo-basic/" class="post-title-link" itemprop="url">hexo下如何写一篇新博客</a>
+          <a href="/2023/12/29/hexo-basic/" class="post-title-link" itemprop="url">hexo下如何写一篇新文章</a>
         </h2>
 
         <div class="post-meta-container">
@@ -548,9 +620,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2023-12-29 19:56:38 / 修改时间：20:53:13" itemprop="dateCreated datePublished" datetime="2023-12-29T19:56:38+08:00">2023-12-29</time>
+      <time title="创建时间：2023-12-29 19:56:38" itemprop="dateCreated datePublished" datetime="2023-12-29T19:56:38+08:00">2023-12-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-01-02 17:01:37" itemprop="dateModified" datetime="2024-01-02T17:01:37+08:00">2024-01-02</time>
     </span>
 
   
@@ -560,14 +638,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>49</span>
+      <span>1.5k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>6 分钟</span>
     </span>
 </div>
 
@@ -578,8 +656,18 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h3><p>开启文章资源文件夹<br>把图片放入与文章文件名相同的文件夹后，通过下面的标签插件引入：</p>
-<pre class="line-numbers language-none"><code class="language-none">&#123;% asset_img example.jpg This is an example image %&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+          <p>版本：hexo 7.0 </p>
+<h2 id="新建文章"><a href="#新建文章" class="headerlink" title="新建文章"></a>新建文章</h2><p>在<code>sitefolder</code>下执行以下命令：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">hexo new post <span class="token string">"title"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>其中<code>post</code>可以省略。执行后，会在<code>sitefolder/source/_posts</code>目录下新增一个名为<code>title.md</code>的文件，文件内容是根据<code>sitefolder/scaffolds/post.md</code>模板生成的。然后就可以在<code>title.md</code>里撰写文章了。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/12/29/hexo-basic/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -623,7 +711,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/12/24/how-to-build-my-own-blog/" class="post-title-link" itemprop="url">如何通过hexo+github搭建个人博客</a>
+          <a href="/2023/12/24/how-to-build-my-own-blog/" class="post-title-link" itemprop="url">如何通过hexo以及github搭建个人博客</a>
         </h2>
 
         <div class="post-meta-container">
@@ -641,7 +729,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-12-29 20:49:59" itemprop="dateModified" datetime="2023-12-29T20:49:59+08:00">2023-12-29</time>
+      <time title="修改时间：2024-01-03 21:11:51" itemprop="dateModified" datetime="2024-01-03T21:11:51+08:00">2024-01-03</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -678,7 +766,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>本文主要介绍如何通过hexo+github搭建个人博客</p>
+          <p>操作系统：Ubuntu 22.04</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2023/12/24/how-to-build-my-own-blog/#more" rel="contents">
@@ -811,7 +899,7 @@
 
   <div class="copyright">
     &copy; 
-    <span itemprop="copyrightYear">2023</span>
+    <span itemprop="copyrightYear">2024</span>
     <span class="with-love">
       <i class="fa fa-rocket"></i>
     </span>
@@ -822,13 +910,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">2k</span>
+    <span title="站点总字数">12k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">6 分钟</span>
+    <span title="站点阅读时长">43 分钟</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动

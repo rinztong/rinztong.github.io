@@ -22,16 +22,267 @@
   <entry>
     <title>NexT主题个性化配置</title>
     <url>/2023/12/29/hexo-and-next-configuration/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<p><a href="https://hexo.io/zh-cn/docs/">hexo官网文档</a>和<a href="https://theme-next.js.org/docs/">NexT主题官网文档</a>有更多更详细的内容。<a href="https://github.com/hexo-next/hexo-next.github.io">NexT主题官网源码</a>更是能看到<a href="https://theme-next.js.org/">NexT主题官网</a>的对应源码，可供个人配置参考。本文只描述我个人的配置。</p>
+<p>版本：<br>hexo 7.0<br>NexT 8.19.1</p>
+<span id="more"></span>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>在开始之前，先明确有两个配置文件，一个是hexo的，位于<code>sitefolder/_config.yml</code>，一个是NexT的，位于<code>sitefolder/node_modules/hexo-theme-next/_config.yml</code>（本文默认NexT通过npm安装）。在后文，我们分别称这两个配置文件为<code>hexo的配置文件</code>和<code>NexT的配置文件</code>，对应英文<code>Hexo config file</code>和<code>NexT config file</code>。<br>对于<code>NexT的配置文件</code>，不推荐直接修改<code>sitefolder/node_modules/hexo-theme-next/_config.yml</code>，这样做可能会在后续对NexT的升级造成影响，应该将该文件拷贝至<code>sitefolder</code>下并重命名为<code>_config.next.yml</code>。因此在<code>sitefolder</code>下执行该命令：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">cp</span> node_modules/hexo-theme-next/_config.yml _config.next.yml<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>后续直接修改<code>sitefolder/_config.next.yml</code>即可。<br>注：以下有关配置文件的修改先搜索<code>key</code>是否存在，如果存在，则直接修改<code>value</code>，否则需要新增<code>key</code>和<code>value</code>。安装完新的插件或者修改完配置文件后，如果需要执行<code>hexo g</code>，建议先执行<code>hexo clean</code>，保证配置能够按期望生效。<br>参考：<a href="https://theme-next.js.org/docs/getting-started/configuration">NexT User Docs - Starting to Use - Configuration</a></p>
+<h2 id="开始配置"><a href="#开始配置" class="headerlink" title="开始配置"></a>开始配置</h2><h3 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h3><pre class="line-numbers language-yaml" data-language="yaml"><div class="caption"><span>Hexo config file</span></div><code class="language-yaml"><span class="token key atrule">title</span><span class="token punctuation">:</span> Rin
+<span class="token key atrule">subtitle</span><span class="token punctuation">:</span> 学习随笔
+<span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">''</span>
+<span class="token key atrule">keywords</span><span class="token punctuation">:</span>
+<span class="token key atrule">author</span><span class="token punctuation">:</span> rinztong
+<span class="token key atrule">language</span><span class="token punctuation">:</span> zh<span class="token punctuation">-</span>CN
+<span class="token key atrule">timezone</span><span class="token punctuation">:</span> Asia/Shanghai
+<span class="token key atrule">url</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//rinztong.github.io/<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>参考：<a href="https://hexo.io/zh-cn/docs/configuration">hexo - 开始使用 - 配置</a></p>
+<h3 id="选择方案"><a href="#选择方案" class="headerlink" title="选择方案"></a>选择方案</h3><p>NexT提供了4种方案，每种方案有着不同的视图，具体可去官网查看，然后选择自己喜欢的进行配置。我个人选择了Gemini：</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><div class="caption"><span>NexT config file</span></div><code class="language-yaml"><span class="token comment">#scheme: Muse</span>
+<span class="token comment">#scheme: Mist</span>
+<span class="token comment">#scheme: Pisces</span>
+<span class="token key atrule">scheme</span><span class="token punctuation">:</span> Gemini<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>参考：<a href="https://theme-next.js.org/docs/theme-settings/">NexT User Docs - Theme Settings</a></p>
+<h3 id="新增页面"><a href="#新增页面" class="headerlink" title="新增页面"></a>新增页面</h3><p>可以看到当前个人博客的侧边栏有<strong>首页</strong>、<strong>关于</strong>、<strong>标签</strong>、<strong>分类</strong>和<strong>归档</strong>，默认是没有的。其中<strong>首页</strong>和<strong>归档</strong>页面的新增可以通过简单修改<code>NexT的配置文件</code>来做到，把<code>menu</code>下<code>home</code>和<code>archives</code>的注释去掉即可：</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><div class="caption"><span>NexT config file</span></div><code class="language-yaml"><span class="token key atrule">menu</span><span class="token punctuation">:</span>
+  <span class="token key atrule">home</span><span class="token punctuation">:</span> / <span class="token punctuation">|</span><span class="token punctuation">|</span> fa fa<span class="token punctuation">-</span>home
+  <span class="token key atrule">archives</span><span class="token punctuation">:</span> /archives/ <span class="token punctuation">|</span><span class="token punctuation">|</span> fa fa<span class="token punctuation">-</span>archive<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>而<strong>关于</strong>、<strong>标签</strong>和<strong>分类</strong>页面需要在<code>sitefolder</code>下执行以下命令：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">hexo new page <span class="token string">"about"</span>
+hexo new page <span class="token string">"tags"</span>
+hexo new page <span class="token string">"categories"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>其中<code>hexo new page &quot;title&quot;</code>用于新增页面，执行后，会在<code>sitefolder/source/_posts</code>目录下新建一个名为<code>title</code>的文件夹，同时在<code>sitefolder/source/_posts/title</code>目录下新增一个名为<code>index.md</code>的文件。因此，以上命令执行完后会发现在<code>sitefolder/source/_posts</code>目录下多了<code>about</code>、<code>tags</code>和<code>categories</code>文件夹。<br>然后分别修改这几个文件夹下的<code>index.md</code>文件，注意<code>Front-matter</code>中的<code>date</code>不用修改：</p>
+<pre class="line-numbers language-none"><div class="caption"><span>sitefolder/source/_posts/tags/index.md</span></div><code class="language-none">---
+title: Tags
+date: 2023-12-24 22:06:46
+type: tags
+---<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-none"><div class="caption"><span>sitefolder/source/_posts/categories/index.md</span></div><code class="language-none">---
+title: Categories
+date: 2023-12-24 22:42:31
+type: categories
+---<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>关于</strong>页面的<code>index.md</code>可以类似一篇新文章来处理，内容自行定义。<br>最后修改<code>NexT的配置文件</code>，把<code>menu</code>下<code>about</code>、<code>tags</code>和<code>categories</code>的注释去掉：</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><div class="caption"><span>NexT config file</span></div><code class="language-yaml"><span class="token key atrule">menu</span><span class="token punctuation">:</span>
+  <span class="token key atrule">home</span><span class="token punctuation">:</span> / <span class="token punctuation">|</span><span class="token punctuation">|</span> fa fa<span class="token punctuation">-</span>home
+  <span class="token key atrule">about</span><span class="token punctuation">:</span> /about/ <span class="token punctuation">|</span><span class="token punctuation">|</span> fa fa<span class="token punctuation">-</span>user
+  <span class="token key atrule">tags</span><span class="token punctuation">:</span> /tags/ <span class="token punctuation">|</span><span class="token punctuation">|</span> fa fa<span class="token punctuation">-</span>tags
+  <span class="token key atrule">categories</span><span class="token punctuation">:</span> /categories/ <span class="token punctuation">|</span><span class="token punctuation">|</span> fa fa<span class="token punctuation">-</span>th
+  <span class="token key atrule">archives</span><span class="token punctuation">:</span> /archives/ <span class="token punctuation">|</span><span class="token punctuation">|</span> fa fa<span class="token punctuation">-</span>archive<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>由于默认的hexo插件<code>hexo-generator-tag</code>提供了<code>enable_index_page</code>的选项，这个会与上述新增的<strong>标签</strong>页面产生冲突，需要将这个选项置为<code>false</code>，因此还需要一步额外处理：</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><div class="caption"><span>Hexo config file</span></div><code class="language-yaml"><span class="token key atrule">tag_generator</span><span class="token punctuation">:</span>
+  <span class="token key atrule">enable_index_page</span><span class="token punctuation">:</span> <span class="token boolean important">false</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>一点额外补充：有关插件的配置，可以到<a href="https://hexo.io/plugins/">hexo官网</a>查找相应插件，然后进入该插件的github仓库，阅读其<code>readme</code>即可。<br>参考：<a href="https://theme-next.js.org/docs/theme-settings/custom-pages">NexT User Docs - Theme Settings - Custom Pages</a></p>
+<h3 id="新增本地搜索"><a href="#新增本地搜索" class="headerlink" title="新增本地搜索"></a>新增本地搜索</h3><p>在<code>sitefolder</code>下执行以下命令安装<code>hexo-generator-searchdb</code>:</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> hexo-generator-searchdb<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>修改配置文件：</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><div class="caption"><span>Hexo config file</span></div><code class="language-yaml"><span class="token key atrule">search</span><span class="token punctuation">:</span>
+  <span class="token key atrule">path</span><span class="token punctuation">:</span> search.xml
+  <span class="token key atrule">field</span><span class="token punctuation">:</span> post
+  <span class="token key atrule">content</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">format</span><span class="token punctuation">:</span> html<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-yaml" data-language="yaml"><div class="caption"><span>NexT config file</span></div><code class="language-yaml"><span class="token key atrule">local_search</span><span class="token punctuation">:</span>
+  <span class="token key atrule">enable</span><span class="token punctuation">:</span> <span class="token boolean important">true</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>这样，个人博客的侧边栏便能出现<strong>搜索</strong>了。<br>参考：<br><a href="https://theme-next.js.org/docs/third-party-services/search-services">NexT User Docs - Third-party Plugins Integration - Search Services</a><br><a href="https://github.com/next-theme/hexo-generator-searchdb">next-theme&#x2F;hexo-generator-searchdb</a></p>
+<h3 id="一些文章的相关配置"><a href="#一些文章的相关配置" class="headerlink" title="一些文章的相关配置"></a>一些文章的相关配置</h3><h4 id="文章信息的显示"><a href="#文章信息的显示" class="headerlink" title="文章信息的显示"></a>文章信息的显示</h4><p>以下配置使文章能够显示<strong>发表于</strong>、<strong>更新于</strong>以及<strong>分类于</strong>：</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><div class="caption"><span>NexT config file</span></div><code class="language-yaml"><span class="token key atrule">post_meta</span><span class="token punctuation">:</span>
+  <span class="token key atrule">created_at</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">updated_at</span><span class="token punctuation">:</span>
+    <span class="token key atrule">enable</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+    <span class="token key atrule">another_day</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">categories</span><span class="token punctuation">:</span> <span class="token boolean important">true</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>参考：<a href="https://theme-next.js.org/docs/theme-settings/posts">NexT User Docs - Theme Settings - Posts</a></p>
+<h4 id="代码高亮风格"><a href="#代码高亮风格" class="headerlink" title="代码高亮风格"></a>代码高亮风格</h4><p>首先在<code>hexo的配置文件</code>中配置代码高亮。<code>syntax_highlighter</code>可选择<code>highlight.js</code>或者<code>prismjs</code>来支持代码高亮，再根据上一步选择对<code>highlight</code>或者<code>prismjs</code>做具体配置。我选择了<code>prismjs</code>：</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><div class="caption"><span>Hexo config file</span></div><code class="language-yaml"><span class="token key atrule">syntax_highlighter</span><span class="token punctuation">:</span> prismjs
+<span class="token key atrule">highlight</span><span class="token punctuation">:</span>
+  <span class="token key atrule">line_number</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">auto_detect</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+  <span class="token key atrule">tab_replace</span><span class="token punctuation">:</span> <span class="token string">''</span>
+  <span class="token key atrule">wrap</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">hljs</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+<span class="token key atrule">prismjs</span><span class="token punctuation">:</span>
+  <span class="token key atrule">preprocess</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">line_number</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">tab_replace</span><span class="token punctuation">:</span> <span class="token string">''</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>然后在<code>NexT的配置文件</code>中配置代码高亮风格，其中<code>theme</code>是<code>highlight</code>的高亮风格，而<code>prism</code>则对应<code>prismjs</code>：</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><div class="caption"><span>NexT config file</span></div><code class="language-yaml"><span class="token key atrule">codeblock</span><span class="token punctuation">:</span>
+  <span class="token key atrule">theme</span><span class="token punctuation">:</span>
+    <span class="token key atrule">light</span><span class="token punctuation">:</span> atom<span class="token punctuation">-</span>one<span class="token punctuation">-</span>light
+    <span class="token key atrule">dark</span><span class="token punctuation">:</span> atom<span class="token punctuation">-</span>one<span class="token punctuation">-</span>dark
+  <span class="token key atrule">prism</span><span class="token punctuation">:</span>
+    <span class="token key atrule">light</span><span class="token punctuation">:</span> prism<span class="token punctuation">-</span>solarizedlight
+    <span class="token key atrule">dark</span><span class="token punctuation">:</span> prism<span class="token punctuation">-</span>dark<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>其他高亮风格可以<a href="https://theme-next.js.org/highlight/">去这里</a>预览效果。<br>参考：<br><a href="https://theme-next.js.org/docs/theme-settings/miscellaneous">NexT User Docs - Theme Settings - Misc Theme Settings</a><br><a href="https://hexo.io/zh-cn/docs/syntax-highlight">hexo - 自定义 - 代码高亮</a><br>注意：NexT 8.19.1有bug导致上述配置无法生效，具体问题和解决方案请查看<a href="https://github.com/next-theme/hexo-theme-next/issues/741">这里</a>。</p>
+<h4 id="字数统计"><a href="#字数统计" class="headerlink" title="字数统计"></a>字数统计</h4><p>以下配置能让文章显示<strong>本文字数</strong>和<strong>阅读时长</strong>，同时在页脚显示<strong>站点总字数</strong>和<strong>站点阅读时长</strong>。在<code>sitefolder</code>下执行以下命令即可：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> hexo-word-counter<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>配置文件采用了默认值：</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><div class="caption"><span>Hexo config file</span></div><code class="language-yaml"><span class="token key atrule">symbols_count_time</span><span class="token punctuation">:</span>
+  <span class="token key atrule">symbols</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">time</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">total_symbols</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">total_time</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">exclude_codeblock</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+  <span class="token key atrule">wpm</span><span class="token punctuation">:</span> <span class="token number">275</span>
+  <span class="token key atrule">suffix</span><span class="token punctuation">:</span> <span class="token string">"mins."</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-yaml" data-language="yaml"><div class="caption"><span>NexT config file</span></div><code class="language-yaml"><span class="token key atrule">symbols_count_time</span><span class="token punctuation">:</span>
+  <span class="token key atrule">separated_meta</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">item_text_total</span><span class="token punctuation">:</span> <span class="token boolean important">false</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>参考：<br><a href="https://theme-next.js.org/docs/theme-settings/miscellaneous">NexT User Docs - Theme Settings - Misc Theme Settings</a><br><a href="https://github.com/next-theme/hexo-word-counter">next-theme&#x2F;hexo-word-counter</a></p>
+<h3 id="一些小细节"><a href="#一些小细节" class="headerlink" title="一些小细节"></a>一些小细节</h3><h4 id="复制代码按钮"><a href="#复制代码按钮" class="headerlink" title="复制代码按钮"></a>复制代码按钮</h4><p>以下配置能让鼠标悬浮在代码块上时显示复制代码按钮，同时也配置了按钮的风格：</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><div class="caption"><span>NexT config file</span></div><code class="language-yaml"><span class="token key atrule">copy_button</span><span class="token punctuation">:</span>
+    <span class="token key atrule">enable</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+    <span class="token comment"># Available values: default | flat | mac</span>
+    <span class="token key atrule">style</span><span class="token punctuation">:</span> mac<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>参考：<a href="https://theme-next.js.org/docs/theme-settings/miscellaneous">NexT User Docs - Theme Settings - Misc Theme Settings</a></p>
+<h4 id="页脚"><a href="#页脚" class="headerlink" title="页脚"></a>页脚</h4><p>修改了年份与版权信息之间的图标和颜色：</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><div class="caption"><span>NexT config file</span></div><code class="language-yaml"><span class="token key atrule">footer</span><span class="token punctuation">:</span>
+  <span class="token key atrule">icon</span><span class="token punctuation">:</span>
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> fa fa<span class="token punctuation">-</span>rocket
+    <span class="token key atrule">color</span><span class="token punctuation">:</span> <span class="token string">"#808080"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>参考：<a href="https://theme-next.js.org/docs/theme-settings/footer">NexT User Docs - Theme Settings - Footer</a></p>
+<h4 id="回到顶部"><a href="#回到顶部" class="headerlink" title="回到顶部"></a>回到顶部</h4><p>以下配置能让右下角显示回到顶部的按钮，同时能显示滚动条所在位置的百分比：</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><div class="caption"><span>NexT config file</span></div><code class="language-yaml"><span class="token key atrule">back2top</span><span class="token punctuation">:</span>
+  <span class="token key atrule">enable</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">sidebar</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+  <span class="token key atrule">scrollpercent</span><span class="token punctuation">:</span> <span class="token boolean important">true</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>参考：<a href="https://theme-next.js.org/docs/theme-settings/miscellaneous">NexT User Docs - Theme Settings - Misc Theme Settings</a></p>
+<h4 id="侧边栏"><a href="#侧边栏" class="headerlink" title="侧边栏"></a>侧边栏</h4><p>以下配置能让侧边栏的<strong>标签</strong>、<strong>分类</strong>和<strong>归档</strong>显示图标和相应的数量：</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><div class="caption"><span>NexT config file</span></div><code class="language-yaml"><span class="token key atrule">menu_settings</span><span class="token punctuation">:</span>
+  <span class="token key atrule">icons</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">badges</span><span class="token punctuation">:</span> <span class="token boolean important">true</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h4 id="github横幅"><a href="#github横幅" class="headerlink" title="github横幅"></a>github横幅</h4><p>以下配置能让右上角显示github横幅，点击后能跳转到<code>github_banner.permalink</code>所指定的页面：</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><div class="caption"><span>NexT config file</span></div><code class="language-yaml"><span class="token key atrule">github_banner</span><span class="token punctuation">:</span>
+  <span class="token key atrule">enable</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">permalink</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//github.com/rinztong<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>参考：<a href="https://theme-next.js.org/docs/theme-settings/miscellaneous">NexT User Docs - Theme Settings - Misc Theme Settings</a></p>
+]]></content>
       <tags>
         <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
-    <title>hexo下如何写一篇新博客</title>
+    <title>hexo下如何写一篇新文章</title>
     <url>/2023/12/29/hexo-basic/</url>
-    <content><![CDATA[<h3 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h3><p>开启文章资源文件夹<br>把图片放入与文章文件名相同的文件夹后，通过下面的标签插件引入：</p>
-<pre class="line-numbers language-none"><code class="language-none">&#123;% asset_img example.jpg This is an example image %&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>]]></content>
+    <content><![CDATA[<p>版本：hexo 7.0 </p>
+<h2 id="新建文章"><a href="#新建文章" class="headerlink" title="新建文章"></a>新建文章</h2><p>在<code>sitefolder</code>下执行以下命令：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">hexo new post <span class="token string">"title"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>其中<code>post</code>可以省略。执行后，会在<code>sitefolder/source/_posts</code>目录下新增一个名为<code>title.md</code>的文件，文件内容是根据<code>sitefolder/scaffolds/post.md</code>模板生成的。然后就可以在<code>title.md</code>里撰写文章了。</p>
+<span id="more"></span>
+<h2 id="设置文章的Front-matter"><a href="#设置文章的Front-matter" class="headerlink" title="设置文章的Front-matter"></a>设置文章的Front-matter</h2><p>在撰写文章之前，我们需要先配置文章的<code>Front-matter</code>，也就是上下用<code>---</code>围起来的部分。<a href="https://hexo.io/zh-cn/docs/front-matter">官网文档</a>有完整的说明，这里只说几个我个人用到的。<br>注意：默认<code>scaffolds</code>文件夹下的模板没有修改过。</p>
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">title</td>
+<td align="left">文章的标题，默认为命令<code>hexo new post &quot;title&quot;</code>中<code>title</code>的值。文章的文件名和标题可以不一样，可按需修改。就像本篇文章的文件名是<code>hexo-basic.md</code>，但是标题为<code>hexo下如何写一篇新文章</code></td>
+</tr>
+<tr>
+<td align="left">date</td>
+<td align="left">文章新建的时间，默认为执行<code>hexo new</code>命令时的时间，可自行修改，一般不修改</td>
+</tr>
+<tr>
+<td align="left">updated</td>
+<td align="left">文章修改的时间，这个一般不配置，会根据文件最后保存的时间自动生成</td>
+</tr>
+<tr>
+<td align="left">tags</td>
+<td align="left">文章的标签，下面详细展开</td>
+</tr>
+<tr>
+<td align="left">categories</td>
+<td align="left">文章的分类，下面详细展开</td>
+</tr>
+</tbody></table>
+<h3 id="分类与标签"><a href="#分类与标签" class="headerlink" title="分类与标签"></a>分类与标签</h3><p>一篇文章可以设置多个标签，标签与标签之间是同级的，例如：</p>
+<pre class="line-numbers language-none"><code class="language-none">tags:
+- PS3
+- Games<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>表示这篇文章有两个标签，<code>PS3</code>与<code>Games</code>，且这两者同级。<br>一篇文章同样也可以设置多个分类，这些分类可以是同级的，也可以是有层级的，或者两者结合。例如：</p>
+<pre class="line-numbers language-none"><code class="language-none">categories:
+- Diary
+- Life<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>表示文章属于<code>Diary</code>和<code>Life</code>这两个分类，且<code>Life</code>是<code>Diary</code>的子分类。而：</p>
+<pre class="line-numbers language-none"><code class="language-none">categories:
+- [Diary]
+- [Life]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>表示文章属于<code>Diary</code>和<code>Life</code>这两个分类，且这两者同级。如果希望两者结合则：</p>
+<pre class="line-numbers language-none"><code class="language-none">categories:
+- [Diary, PlayStation]
+- [Diary, Games]
+- [Life]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>表示文章属于<code>Diary</code>，<code>Life</code>，<code>PlayStation</code>以及<code>Games</code>这四个分类，其中<code>Diary</code>和<code>Life</code>两者同级，且<code>PlayStation</code>和<code>Games</code>为<code>Diary</code>的子分类。</p>
+<h2 id="撰写文章"><a href="#撰写文章" class="headerlink" title="撰写文章"></a>撰写文章</h2><h3 id="Markdown语言"><a href="#Markdown语言" class="headerlink" title="Markdown语言"></a>Markdown语言</h3><p>文章使用Markdown语言撰写，有关Markdown语言的教程有很多，在此不再赘述，只列出可参考的网站：<br><a href="https://markdown.com.cn/">Markdown 官方教程</a> </p>
+<h3 id="撰写环境"><a href="#撰写环境" class="headerlink" title="撰写环境"></a>撰写环境</h3><p>我个人使用vscode，有关vscode的安装会在<a href="/2023/12/29/how-to-build-c-dev-env/" title="linux下搭建c语言开发环境">linux下搭建c语言开发环境</a>文中阐述。vscode有很多扩展可供使用，Markdown相关扩展我使用的是<code>Markdown All in One</code>。安装后打开以<code>.md</code>为后缀的文件，编辑栏右上方有预览按钮，同时相应语法也有高亮显示。</p>
+<h3 id="一些用的上的小技巧"><a href="#一些用的上的小技巧" class="headerlink" title="一些用的上的小技巧"></a>一些用的上的小技巧</h3><p>同样可以在<a href="https://hexo.io/zh-cn/docs/">官网文档</a>上找到更多更为详细的说明，这里只记录我个人所使用的。</p>
+<h4 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h4><pre class="line-numbers language-none"><code class="language-none">&#123;% codeblock [title] [lang:language] %&#125;
+code snippet
+&#123;% endcodeblock %&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>其中<code>title</code>和<code>lang:language</code>可选。<code>title</code>为这段代码的标题，按需填写，<code>lang:language</code>指明这段代码所使用的语言，从而可以按指定语言进行代码高亮。<br>例如<code>codeblock hello world lang:c</code>的效果为：</p>
+<pre class="line-numbers language-c" data-language="c"><div class="caption"><span>hello world</span></div><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+   <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Hello, World!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="引用文章"><a href="#引用文章" class="headerlink" title="引用文章"></a>引用文章</h4><p>有时候，一篇文章里需要引用自己的另一篇文章，有两种方式：</p>
+<pre class="line-numbers language-none"><code class="language-none">&#123;% post_path filename %&#125;
+&#123;% post_link filename [title] %&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>其中<code>filename</code>为被引用文章对应<code>sitefolder/source/_posts</code>目录下<strong>不包含.md</strong>的文件名。<code>post_link</code>生成链接，如果不指定<code>title</code>，则链接文字为文章的标题，否则为<code>title</code>。<code>post_path</code>生成网页路径。我们以本篇文章为例看下效果:</p>
+<ul>
+<li><code>&#123;% post_link hexo-basic %&#125;</code>：<a href="/2023/12/29/hexo-basic/" title="hexo下如何写一篇新文章">hexo下如何写一篇新文章</a></li>
+<li><code>&#123;% post_link hexo-basic '通往文章的链接' %&#125;</code>：<a href="/2023/12/29/hexo-basic/" title="hexo下如何写一篇新文章">通往文章的链接</a>，与上面指向同一篇文章</li>
+<li><code>&#123;% post_path hexo-basic %&#125;</code>：/2023/12/29/hexo-basic/</li>
+</ul>
+<h4 id="文章摘要"><a href="#文章摘要" class="headerlink" title="文章摘要"></a>文章摘要</h4><p>我们可以自定义每篇文章在首页显示的内容：在文章中使用<code>&lt;!-- more --&gt;</code>，那么<code>&lt;!-- more --&gt;</code>之前的文字将会被视为摘要，首页中将只出现这部分文字。例如：</p>
+<pre class="line-numbers language-none"><code class="language-none">这是一段文字
+&lt;!-- more --&gt;
+这是剩下的文字<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>那么首页只会显示<code>这是一段文字</code>，然后紧接一个<code>阅读全文</code>的按钮。点击跳转至相应文章页面后会全部显示：</p>
+<pre class="line-numbers language-none"><code class="language-none">这是一段文字
+这是剩下的文字<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h4 id="高亮文字"><a href="#高亮文字" class="headerlink" title="高亮文字"></a>高亮文字</h4><p>通过以下方式可以高亮一段文字：</p>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>mark</span><span class="token punctuation">></span></span>这是一段文字<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>mark</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>效果为：<mark>这是一段文字</mark></p>
+<h4 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h4><p>下述方式的图片会占用远程仓库的空间，由于github对每个仓库的大小有限制，若个人博客里需要的图片不多，则可以采用。<br>首先，修改<code>sitefolder</code>下hexo的配置文件<code>_config.yml</code>，开启文章资源文件夹功能：</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><div class="caption"><span>Hexo config file</span></div><code class="language-yaml"><span class="token key atrule">post_asset_folder</span><span class="token punctuation">:</span> <span class="token boolean important">true</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>这样一来，每次执行<code>hexo new post &quot;title&quot;</code>后，在<code>sitefolder/source/_posts</code>目录下，不仅会新增一个名为<code>title.md</code>的文件，同时也会新建一个名为<code>title</code>的文件夹，这个文件夹用来存放对应文章所需的所有图片。<br>然后在<code>title.md</code>里通过以下方式插入图片：</p>
+<pre class="line-numbers language-none"><code class="language-none">&#123;% asset_img filename [title] %&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>其中<code>title</code>可选，如果设置，则鼠标悬浮在图片上会显示<code>title</code>，<code>filename</code>则为图片的文件名。以本篇文章为例，我在<code>sitefolder/source/_posts/hexo-basic/</code>下存放了文件名为<code>favicon-16x16-next.png</code>的图片：</p>
+<pre class="line-numbers language-none"><code class="language-none">&#123;% asset_img favicon-16x16-next.png This is an example image %&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>效果如下，鼠标悬浮在图片上有<code>This is an example image</code>显示：</p>
+<img src="/2023/12/29/hexo-basic/favicon-16x16-next.png" class="" title="This is an example image">
+<p>若：</p>
+<pre class="line-numbers language-none"><code class="language-none">&#123;% asset_img favicon-16x16-next.png %&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>则鼠标悬浮在图片上无文字显示：</p>
+<img src="/2023/12/29/hexo-basic/favicon-16x16-next.png" class="">
+<p>通过这种方式有个好处，不论在哪个页面，图片都能正确显示。<br>在这里顺带记录下Ubuntu自带的截图快捷键，可通过<code>Settings-&gt;Keyboard-&gt;Keyboard Shortcuts-&gt;View and Customize Shortcuts-&gt;Screenshots</code>里配置：</p>
+<table>
+<thead>
+<tr>
+<th align="left">效果</th>
+<th align="left">快捷键</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">整个屏幕截图</td>
+<td align="left"><code>Shift+PrtSc</code></td>
+</tr>
+<tr>
+<td align="left">自定义截图</td>
+<td align="left"><code>PrtSc</code></td>
+</tr>
+<tr>
+<td align="left">整个窗口截图</td>
+<td align="left"><code>Alt+PrtSc</code></td>
+</tr>
+</tbody></table>
+<p>截图保存在<code>Home/Pictures/Screenshots</code>目录下。</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>新写的文章在hexo下除了以<code>post</code>文章形式来承载以外，还可以以<code>draft</code>草稿形式。目前我还没有使用过，具体可以去<a href="https://hexo.io/zh-cn/docs/writing">官网文档</a>了解。</p>
+]]></content>
       <tags>
         <tag>hexo</tag>
         <tag>markdown</tag>
@@ -40,7 +291,54 @@
   <entry>
     <title>linux下搭建c语言开发环境</title>
     <url>/2023/12/29/how-to-build-c-dev-env/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<p>本文使用vscode、gcc、cmake以及gdb来搭建c语言开发环境<br>操作系统：Ubuntu 22.04<br>架构：x86_64&#x2F;amd64&#x2F;x64</p>
+<span id="more"></span>
+<h2 id="安装gcc、g-以及gdb"><a href="#安装gcc、g-以及gdb" class="headerlink" title="安装gcc、g++以及gdb"></a>安装gcc、g++以及gdb</h2><p>在安装以前，先确认操作系统是否已经安装：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gcc <span class="token parameter variable">--version</span>
+g++ <span class="token parameter variable">--version</span>
+gdb <span class="token parameter variable">--version</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>如果已安装，则会打印出版本号，否则执行以下命令进行安装：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> gcc
+<span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> g++
+<span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> gdb<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>完成后再次尝试打印版本号，检查是否安装成功。</p>
+<h2 id="安装cmake"><a href="#安装cmake" class="headerlink" title="安装cmake"></a>安装cmake</h2><p>去<a href="https://cmake.org/download/">cmake官网</a>，选择一个版本，一般是最新的。然后找到<code>Binary distributions-&gt;Linux x86_64</code>，选择<code>.sh</code>为末尾的文件下载。<br>然后在存放<code>.sh</code>文件的目录下执行：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">chmod</span> +x cmake-3.27.9-linux-x86_64.sh
+<span class="token function">sudo</span> ./cmake-3.27.9-linux-x86_64.sh <span class="token parameter variable">--prefix</span><span class="token operator">=</span>/usr/local --skip-license<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>其中<code>cmake-3.27.9-linux-x86_64.sh</code>自行替换为自己下载文件的文件名。<br>执行完成后，尝试打印版本号查看是否安装成功：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">cmake <span class="token parameter variable">--version</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="安装vscode及相关扩展"><a href="#安装vscode及相关扩展" class="headerlink" title="安装vscode及相关扩展"></a>安装vscode及相关扩展</h2><h3 id="安装vscode"><a href="#安装vscode" class="headerlink" title="安装vscode"></a>安装vscode</h3><p>去<a href="https://code.visualstudio.com/Download">vscode官网</a>，选择<code>.deb</code>且<code>x64</code>下载。国内下载可能会很慢，可参考<a href="https://zhuanlan.zhihu.com/p/112215618">这篇文章</a>解决：将下载链接中<code>https://</code>与<code>/stable</code>中间的部分替换为<code>vscode.cdn.azure.cn</code>后，输入至地址栏再次下载即可。<br>然后在存放<code>.deb</code>文件的目录下执行：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> dpkg <span class="token parameter variable">-i</span> code_1.84.2-1699528352_amd64.deb<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>其中<code>code_1.84.2-1699528352_amd64.deb</code>自行替换为自己下载文件的文件名。安装完毕后，点击桌面左下角的<code>Show Applications</code>便能看到<code>Visual Studio Code</code>了。</p>
+<h3 id="安装扩展"><a href="#安装扩展" class="headerlink" title="安装扩展"></a>安装扩展</h3><p>在vscode的<code>Extensions</code>里搜索<code>C/C++ Extension Pack</code>以及<code>CMake</code>并安装。然后将<code>Settings-&gt;Extensions-&gt;CMake Tools-&gt;CMake&gt;Options:Status Bar Visibility</code>设置为<code>visible</code>，这样在下方状态栏就能显示相关选项了。</p>
+<h2 id="hello-world"><a href="#hello-world" class="headerlink" title="hello world"></a>hello world</h2><p>下面举一个简单的例子来走通整个编码调试流程。<br>先新建一个源码目录，通过vscode打开。在这个源码目录下新增一个名为<code>CMakeLists.txt</code>的文件，以及新建一个名为<code>src</code>的文件夹。然后在<code>src</code>目录下新增一个名为<code>main.c</code>的文件。</p>
+<pre class="line-numbers language-cmake" data-language="cmake"><div class="caption"><span>CMakeLists.txt</span></div><code class="language-cmake"><span class="token keyword">cmake_minimum_required</span><span class="token punctuation">(</span><span class="token property">VERSION</span> <span class="token number">3.23</span> FATAL_ERROR<span class="token punctuation">)</span>
+
+<span class="token keyword">project</span><span class="token punctuation">(</span>example
+    <span class="token property">VERSION</span> <span class="token number">0.0.1</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">add_executable</span><span class="token punctuation">(</span>main src/main.c<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-c" data-language="c"><div class="caption"><span>src/main.c</span></div><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+   <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Hello, World!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>依次完成以下步骤：</p>
+<ul>
+<li>点击vscode状态栏<code>Click to select the current build varient</code>，会先<code>Select a Kit</code>，这步选择<code>GCC</code>，然后再<code>Select a build varient</code>，因为我们想要调试，可以选择<code>Debug</code>，这样生成的可执行文件包含调试信息。至此，会在源码目录的<code>build</code>目录下生成<code>Makefile</code>文件。</li>
+<li>点击vscode状态栏<code>Set the default build target</code>，目前我们编写的<code>CMakeLists.txt</code>中只有<code>main</code>这个<code>target</code>，所以选择<code>main</code>或者<code>all</code>都可以。在以后更为复杂的场景下，选择自己需要生成的<code>target</code>。</li>
+<li>点击vscode状态栏<code>Build the selected target</code>，生成可执行文件。</li>
+<li>点击vscode状态栏<code>Select the target to launch</code>，选择<code>main</code>。</li>
+<li>若要执行，则点击vscode状态栏<code>Launch the selected target in the terminal window</code>，若要调试，点击vscode状态栏<code>Launch the debugger for the selected target</code>。</li>
+</ul>
+<p>后续可以随时点击vscode状态栏<code>Click to change the active kit</code>更换套件，以及<code>Click to select the current build varient</code>更换构建变体，这两者任意一个更改后会触发重新生成<code>Makefile</code>文件。<br>有关图形化界面的调试不再赘述。在此补充一点，在<code>DEBUG CONSOLE</code>可通过<code>-exec &lt;command&gt;</code>执行<code>gdb</code>的命令，例如<code>gdb</code>命令<code>info threads</code>需要以<code>-exec info threads</code>的形式执行，另外，程序的输出在<code>TERMINAL</code>显示。</p>
+<p>至此，一个基础的c语言开发环境就搭建完成了。</p>
+]]></content>
+      <categories>
+        <category>环境搭建</category>
+      </categories>
       <tags>
         <tag>linux</tag>
         <tag>vscode</tag>
@@ -50,17 +348,16 @@
       </tags>
   </entry>
   <entry>
-    <title>如何通过hexo+github搭建个人博客</title>
+    <title>如何通过hexo以及github搭建个人博客</title>
     <url>/2023/12/24/how-to-build-my-own-blog/</url>
-    <content><![CDATA[<p>本文主要介绍如何通过hexo+github搭建个人博客</p>
+    <content><![CDATA[<p>操作系统：Ubuntu 22.04</p>
 <span id="more"></span>
-<p>环境：Ubuntu 22.04</p>
 <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h3 id="在github注册一个账号"><a href="#在github注册一个账号" class="headerlink" title="在github注册一个账号"></a>在github注册一个账号</h3><p>在<a href="https://github.com/">github</a>按照提示注册一个账号。<br>注意<strong>邮箱</strong>（email，全网站唯一），<strong>用户名</strong>（username，全网站唯一），<strong>名字</strong>（name，类似于昵称，可以全网站不唯一）。</p>
 <h3 id="安装以及配置git"><a href="#安装以及配置git" class="headerlink" title="安装以及配置git"></a>安装以及配置git</h3><h4 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> <span class="token function">git</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>安装完成后，可输入<code>git --version</code>检查是否安装成功。</p>
-<h4 id="配置git"><a href="#配置git" class="headerlink" title="配置git"></a>配置git</h4><p>配置git的名字，可随意填写，会在提交commit的作者中体现，<a href="https://docs.github.com/en/get-started/getting-started-with-git/setting-your-username-in-git">github的文档</a>有说明可参考。我们可以设置为<mark>github的名字</mark>。</p>
+<h4 id="配置git"><a href="#配置git" class="headerlink" title="配置git"></a>配置git</h4><p>配置git的名字，可随意填写，会在提交commit的作者中体现，<a href="https://docs.github.com/en/get-started/getting-started-with-git/setting-your-username-in-git">github的文档</a>有说明可参考。我们可以设置为<strong>github的名字</strong>。</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> config <span class="token parameter variable">--global</span> user.name <span class="token string">"yourname"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>配置提交代码时使用的邮箱，<mark>邮箱建议与注册github账号的邮箱一致</mark>，这样提交的代码能与你注册的github账号相关联：</p>
+<p>配置提交代码时使用的邮箱，<strong>邮箱建议与注册github账号的邮箱一致</strong>，这样提交的代码能与你注册的github账号相关联：</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> config <span class="token parameter variable">--global</span> user.email <span class="token string">"youremail"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>以下配置让你在命令行操作远程仓库时，只需要输入一次用户名和密码：</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> config <span class="token parameter variable">--global</span> credential.helper store<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
@@ -77,10 +374,10 @@ Warning: Permanently added <span class="token string">'github.com'</span> <span 
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">node</span> <span class="token parameter variable">-v</span>
 <span class="token function">npm</span> <span class="token parameter variable">-v</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>注：如果需要安装指定版本的nodejs，<a href="https://github.com/nodesource/distributions">请参考</a></p>
-<h3 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> <span class="token parameter variable">-g</span> hexo-cli<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">npm</span> <span class="token function">install</span> <span class="token parameter variable">-g</span> hexo-cli<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>可输入<code>hexo -v</code>检查是否安装成功。</p>
 <p>以上，我们完成了所有准备工作。</p>
-<h2 id="开始搭建个人博客"><a href="#开始搭建个人博客" class="headerlink" title="开始搭建个人博客"></a>开始搭建个人博客</h2><p>在开始之前，建议先阅读<a href="https://zhuanlan.zhihu.com/p/348093645">这篇文章</a>去了解hexo+github搭建个人博客的大致原理，这样能更加清楚后续的每一步是为了做什么。</p>
+<h2 id="开始搭建个人博客"><a href="#开始搭建个人博客" class="headerlink" title="开始搭建个人博客"></a>开始搭建个人博客</h2><p>在开始之前，建议先阅读<a href="https://zhuanlan.zhihu.com/p/348093645">这篇文章</a>去了解hexo和github搭建个人博客的大致原理，这样能更加清楚后续的每一步是为了做什么。</p>
 <h3 id="指定一个文件夹建立网站"><a href="#指定一个文件夹建立网站" class="headerlink" title="指定一个文件夹建立网站"></a>指定一个文件夹建立网站</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">hexo init sitefolder<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>其中<code>sitefolder</code>为建立网站的文件夹的路径，包含文件夹名。后续我们个人博客的所需要的所有资源都在这个文件夹下。<br>然后执行：</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> sitefolder
@@ -94,13 +391,13 @@ Warning: Permanently added <span class="token string">'github.com'</span> <span 
 ├── source        #源文件夹
 |   └── _posts
 └── themes        #主题文件夹<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>部分目录的具体用途后续会在阐述如何写博客的文章中展开，目前我们无需关心。可以注意到，在<code>source/_posts</code>目录下hexo已为我们创建了第一篇博客<code>hello-world.md</code>。</p>
+<p>部分目录的具体用途会在后续的文章中展开，目前我们无需关心。可以注意到，在<code>source/_posts</code>目录下hexo已为我们创建了第一篇文章<code>hello-world.md</code>。</p>
 <h3 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h3><p>hexo有很多<a href="https://hexo.io/themes/">主题</a>可供选择，在建立网站的步骤中，hexo为我们设置了默认的主题landscape。如果需要更换其他主题，可直接到相关主题的github或者官网查看如何安装与配置。在这里我们更换为NexT主题，将命令行的当前目录切换至<code>sitefolder</code>后输入：</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> hexo-theme-next
 <span class="token function">npm</span> <span class="token function">install</span> css<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>然后打开<code>sitefolder</code>下hexo的配置文件<code>_config.yml</code>，修改<code>theme</code>的值为<code>next</code>即可：</p>
 <pre class="line-numbers language-yaml" data-language="yaml"><div class="caption"><span>Hexo config file</span></div><code class="language-yaml"><span class="token key atrule">theme</span><span class="token punctuation">:</span> next<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="生成静态页面"><a href="#生成静态页面" class="headerlink" title="生成静态页面"></a>生成静态页面</h3><p>将命令行的当前目录切换至<code>sitefolder</code>后输入<code>hexo generate</code>或者<code>hexo g</code>来生成静态页面。执行完毕后会发现<code>sitefolder</code>下多了<code>public</code>目录，这个目录下就是可供浏览器访问的所有静态页面，后续给github提交的也只需public下的所有内容。<br>我们可以使用<code>hexo server</code>或者<code>hexo s</code>启动本地服务器，在浏览器中访问<code>http://localhost:4000/</code>就能预览网站了，在这里我们能看到<code>hello-world.md</code>所生成的对应网页。</p>
+<h3 id="生成静态页面"><a href="#生成静态页面" class="headerlink" title="生成静态页面"></a>生成静态页面</h3><p>将命令行的当前目录切换至<code>sitefolder</code>后输入<code>hexo generate</code>或者<code>hexo g</code>来生成静态页面。执行完毕后会发现<code>sitefolder</code>下多了<code>public</code>目录，这个目录下就是可供浏览器访问的所有静态页面，后续给github提交的也只需public下的所有内容。相对应的，<code>hexo clean</code>会将生成的内容全部清除，一般来说新增或者修改完文章只需再次执行<code>hexo g</code>，部分情况下得不到预期的效果时可以执行<code>hexo clean</code>彻底清除后再次<code>hexo g</code>。<br>我们可以使用<code>hexo server</code>或者<code>hexo s</code>启动本地服务器，在浏览器中访问<code>http://localhost:4000/</code>就能预览网站了，在这里我们能看到<code>hello-world.md</code>所生成的对应网页。</p>
 <h3 id="部署网站"><a href="#部署网站" class="headerlink" title="部署网站"></a>部署网站</h3><p>我们使用github pages来部署网站，有关github pages，<a href="https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site">github的文档</a>有说明可参考。<br>在此之前，我们需要新建一个仓库。仓库名有特殊要求，必须是<code>username.github.io</code>，<code>username</code>为注册github时全网站唯一的用户名，其余保持不变，直接点击<code>Create repository</code>创建仓库即可。<br>hexo提供了<code>hexo deploy</code>命令，可以将public目录下的内容直接推送至远程仓库。我们在hexo的配置文件<code>_config.yml</code>中指定远程仓库：</p>
 <pre class="line-numbers language-yaml" data-language="yaml"><div class="caption"><span>Hexo config file</span></div><code class="language-yaml"><span class="token key atrule">deploy</span><span class="token punctuation">:</span>
   <span class="token key atrule">type</span><span class="token punctuation">:</span> git
@@ -117,9 +414,656 @@ Warning: Permanently added <span class="token string">'github.com'</span> <span 
       </tags>
   </entry>
   <entry>
+    <title>使用qemu调试arm64 linux kernel</title>
+    <url>/2023/12/29/how-to-use-qemu-to-dbg-linux/</url>
+    <content><![CDATA[<p>操作系统：Ubuntu 22.04<br>linux源码版本：4.1.10<br>下文基于<a href="/2023/12/29/how-to-read-linux-source/" title="如何阅读linux源码">如何阅读linux源码</a>中的vscode、clangd方式。</p>
+<span id="more"></span>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p><strong>执行以下命令安装qemu</strong>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> qemu-system<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>完成后，在命令行输入<code>qemu-</code>后，按两次<code>tab</code>，便能打印出所有候补：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">qemu-
+qemu-img                    qemu-system-nios2
+qemu-io                     qemu-system-or1k
+qemu-make-debian-root       qemu-system-ppc
+qemu-nbd                    qemu-system-ppc64
+qemu-pr-helper              qemu-system-ppc64le
+qemu-storage-daemon         qemu-system-riscv32
+qemu-system-aarch64         qemu-system-riscv64
+qemu-system-alpha           qemu-system-rx
+qemu-system-arm             qemu-system-s390x
+qemu-system-avr             qemu-system-sh4
+qemu-system-cris            qemu-system-sh4eb
+qemu-system-hppa            qemu-system-sparc
+qemu-system-i386            qemu-system-sparc64
+qemu-system-m68k            qemu-system-tricore
+qemu-system-microblaze      qemu-system-x86_64
+qemu-system-microblazeel    qemu-system-x86_64-microvm
+qemu-system-mips            qemu-system-x86_64-spice
+qemu-system-mips64          qemu-system-xtensa
+qemu-system-mips64el        qemu-system-xtensaeb
+qemu-system-mipsel<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这里尝试打印<code>qemu-system-aarch64</code>的版本号：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">qemu-system-aarch64 <span class="token parameter variable">--version</span>
+QEMU emulator version <span class="token number">6.2</span>.0 <span class="token punctuation">(</span>Debian <span class="token number">1</span>:6.2+dfsg-2ubuntu6.15<span class="token punctuation">)</span>
+Copyright <span class="token punctuation">(</span>c<span class="token punctuation">)</span> <span class="token number">2003</span>-2021 Fabrice Bellard and the QEMU Project developers<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>另外，我们需要<code>host</code>为<code>x86_64</code>，<code>target</code>为<code>arm64</code>的<code>gdb</code>作为调试工具，这里建议使用<code>gdb-multiarch</code>，而不是交叉编译工具链自带的<code>gdb</code>，<strong>执行以下命令安装gdb-multiarch</strong>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> gdb-multiarch<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>完成后可尝试打印版本号：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gdb-multiarch <span class="token parameter variable">--version</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="制作根文件系统"><a href="#制作根文件系统" class="headerlink" title="制作根文件系统"></a>制作根文件系统</h2><h3 id="基本流程"><a href="#基本流程" class="headerlink" title="基本流程"></a>基本流程</h3><p>我们使用<code>busybox</code>来制作根文件系统，可以去<a href="https://www.busybox.net/downloads/">官网</a>下载。由于linux源码的版本较早，所以我下载了<code>busybox-1.23.2.tar.bz2</code>。<br>在存放下载文件的目录下执行以下命令：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">tar</span> <span class="token parameter variable">-xvf</span> busybox-1.23.2.tar.bz2
+<span class="token builtin class-name">cd</span> busybox-1.23.2
+<span class="token function">make</span> distclean
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">ARCH</span><span class="token operator">=</span>arm64
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">CROSS_COMPILE</span><span class="token operator">=</span>aarch64-linux-gnu-
+<span class="token function">make</span> menuconfig
+<span class="token function">make</span>
+<span class="token function">make</span> <span class="token function">install</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>有关<code>make menuconfig</code>的操作，菜单下使用<code>up</code>或者<code>down</code>来选择选项，<code>left</code>或者<code>right</code>来选择下方<code>&lt;Select&gt;</code>，<code>&lt;Exit&gt;</code>或者<code>&lt;Help&gt;</code>。对于有<code>---&gt;</code>的选项，在下方<code>&lt;Select&gt;</code>高亮时，输入<code>Enter</code>就能进入下一级菜单。如果想返回上一级菜单，可以在下方<code>&lt;Exit&gt;</code>高亮时输入<code>Enter</code>，或者直接输入两个<code>ESC</code>。对于前方有括号的选项，输入<code>Y</code>来包含，输入<code>N</code>来不包含，输入<code>M</code>来模块化，或者输入具体的值。<br><code>make menuconfig</code>下我们关注以下选项：</p>
+<ul>
+<li><code>Busybox Settings-&gt;Build Options-&gt;Build BusyBox as a static binary (no shared libs)</code>，输入<code>Y</code></li>
+<li><code>Busybox Settings-&gt;Installation Options (&quot;make install&quot; behavior)-&gt;(./_install) BusyBox installation prefix</code>，我保持了默认值，这样<code>make install</code>会输出至<code>busybox-1.23.2/_install</code>目录下。可自行按需修改。</li>
+</ul>
+<p>上述命令全部执行完毕后，在<code>busybox-1.23.2/_install</code>目录下可以找到根文件系统需要的文件了。接下来在<code>busybox-1.23.2</code>目录下执行以下命令：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 制作ext4 img</span>
+qemu-img create rootfs.img 64m
+mkfs.ext4 rootfs.img
+<span class="token comment"># 将rootfs.img挂载到initrd目录下</span>
+<span class="token function">mkdir</span> initrd
+<span class="token function">sudo</span> <span class="token function">mount</span> rootfs.img initrd
+<span class="token comment"># 拷贝_install目录下的所有内容</span>
+<span class="token function">sudo</span> <span class="token function">cp</span> <span class="token parameter variable">-rf</span> _install/* initrd
+<span class="token comment"># 新建其余文件和文件夹</span>
+<span class="token builtin class-name">cd</span> initrd
+<span class="token function">sudo</span> <span class="token function">mkdir</span> proc sys dev tmp etc etc/init.d
+<span class="token function">sudo</span> <span class="token function">vim</span> etc/init.d/rcS
+<span class="token function">sudo</span> <span class="token function">vim</span> etc/inittab
+<span class="token comment"># 给rsS增加可执行权限</span>
+<span class="token function">sudo</span> <span class="token function">chmod</span> +x etc/init.d/rcS
+<span class="token comment"># 取消挂载rootfs.img</span>
+<span class="token builtin class-name">cd</span> <span class="token punctuation">..</span>
+<span class="token function">sudo</span> <span class="token function">umount</span> initrd
+<span class="token comment"># 压缩rootfs.img</span>
+<span class="token function">gzip</span> <span class="token parameter variable">--best</span> <span class="token parameter variable">-c</span> rootfs.img <span class="token operator">></span> rootfs.img.gz<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>以下分别为<code>rcS</code>和<code>inittab</code>文件的内容：</p>
+<pre class="line-numbers language-bash" data-language="bash"><div class="caption"><span>etc/init.d/rcS</span></div><code class="language-bash"><span class="token shebang important">#!/bin/sh</span>
+<span class="token function">mount</span> <span class="token parameter variable">-t</span> proc none /proc
+<span class="token function">mount</span> <span class="token parameter variable">-t</span> sysfs none /sys
+<span class="token function">mount</span> <span class="token parameter variable">-t</span> tmpfs none /tmp
+/sbin/mdev <span class="token parameter variable">-s</span>
+<span class="token builtin class-name">echo</span> <span class="token string">"welcome to my linux!"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-none"><div class="caption"><span>etc/inittab</span></div><code class="language-none">::sysinit:&#x2F;etc&#x2F;init.d&#x2F;rcS
+::askfirst:-&#x2F;bin&#x2F;sh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h3 id="可选：hello-world"><a href="#可选：hello-world" class="headerlink" title="可选：hello world"></a>可选：hello world</h3><p>下面以<code>hello world</code>程序为例，展示如何在根文件系统中添加自己编写的程序。<br>假设我们现在已经有了一个编写好的<code>hello world</code>程序：</p>
+<pre class="line-numbers language-c" data-language="c"><div class="caption"><span>hello.c</span></div><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+   <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Hello, World!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>在<code>hello.c</code>所在目录下执行以下命令，使用交叉编译工具链中的<code>gcc</code>生成可执行文件：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">aarch64-linux-gnu-gcc hello.c <span class="token parameter variable">-o</span> hello<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>我们可以用交叉编译工具链中的<code>readelf</code>查看<code>hello</code>的文件头信息：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">aarch64-linux-gnu-readelf <span class="token parameter variable">-h</span> hello
+ELF Header:
+  Magic:   7f <span class="token number">45</span> 4c <span class="token number">46</span> 02 01 01 00 00 00 00 00 00 00 00 00 
+  Class:                             ELF64
+  Data:                              <span class="token number">2</span>'s complement, little endian
+  Version:                           <span class="token number">1</span> <span class="token punctuation">(</span>current<span class="token punctuation">)</span>
+  OS/ABI:                            UNIX - System V
+  ABI Version:                       <span class="token number">0</span>
+  Type:                              EXEC <span class="token punctuation">(</span>Executable <span class="token function">file</span><span class="token punctuation">)</span>
+  Machine:                           AArch64
+  Version:                           0x1
+  Entry point address:               0x4004a0
+  Start of program headers:          <span class="token number">64</span> <span class="token punctuation">(</span>bytes into <span class="token function">file</span><span class="token punctuation">)</span>
+  Start of section headers:          <span class="token number">11464</span> <span class="token punctuation">(</span>bytes into <span class="token function">file</span><span class="token punctuation">)</span>
+  Flags:                             0x0
+  Size of this header:               <span class="token number">64</span> <span class="token punctuation">(</span>bytes<span class="token punctuation">)</span>
+  Size of program headers:           <span class="token number">56</span> <span class="token punctuation">(</span>bytes<span class="token punctuation">)</span>
+  Number of program headers:         <span class="token number">9</span>
+  Size of section headers:           <span class="token number">64</span> <span class="token punctuation">(</span>bytes<span class="token punctuation">)</span>
+  Number of section headers:         <span class="token number">36</span>
+  Section header string table index: <span class="token number">35</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>可以看到<code>OS/ABI</code>为<code>UNIX - System V</code>，<code>Machine</code>为<code>AArch64</code>，<code>Type</code>为<code>EXEC (Executable file)</code>，符合预期。<br>查看<code>hello</code>依赖的动态库，只复制了部分显示：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">aarch64-linux-gnu-readelf <span class="token parameter variable">-d</span> hello
+
+Dynamic section at offset 0xdf8 contains <span class="token number">25</span> entries:
+  Tag        Type                         Name/Value
+ 0x0000000000000001 <span class="token punctuation">(</span>NEEDED<span class="token punctuation">)</span>             Shared library: <span class="token punctuation">[</span>libc.so.6<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>我们去交叉编译工具链下查找<code>libc.so.6</code>的路径：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">find</span> /usr/local/toolchain/gcc-arm-8.2-2018.08-x86_64-aarch64-linux-gnu <span class="token parameter variable">-name</span> <span class="token string">"libc.so.6"</span>
+/usr/local/toolchain/gcc-arm-8.2-2018.08-x86_64-aarch64-linux-gnu/aarch64-linux-gnu/libc/lib64/libc.so.6<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>查看<code>hello</code>需要的动态链接器，只复制了部分显示：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">aarch64-linux-gnu-readelf <span class="token parameter variable">-l</span> hello
+
+Elf <span class="token function">file</span> <span class="token builtin class-name">type</span> is EXEC <span class="token punctuation">(</span>Executable <span class="token function">file</span><span class="token punctuation">)</span>
+Entry point 0x4004a0
+There are <span class="token number">9</span> program headers, starting at offset <span class="token number">64</span>
+
+Program Headers:
+  Type           Offset             VirtAddr           PhysAddr
+                 FileSiz            MemSiz              Flags  Align
+  PHDR           0x0000000000000040 0x0000000000400040 0x0000000000400040
+                 0x00000000000001f8 0x00000000000001f8  R      0x8
+  INTERP         0x0000000000000238 0x0000000000400238 0x0000000000400238
+                 0x000000000000001b 0x000000000000001b  R      0x1
+      <span class="token punctuation">[</span>Requesting program interpreter: /lib/ld-linux-aarch64.so.1<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>得到了<code>hello</code>所依赖的动态库和所需要的动态链接器后，我们需要在根文件系统里添加这些文件。在<code>busybox-1.23.2</code>目录下执行以下命令：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">mount</span> rootfs.img initrd
+<span class="token builtin class-name">cd</span> initrd
+<span class="token function">sudo</span> <span class="token function">mkdir</span> lib
+<span class="token function">sudo</span> <span class="token function">cp</span> <span class="token parameter variable">-rf</span> /usr/local/toolchain/gcc-arm-8.2-2018.08-x86_64-aarch64-linux-gnu/aarch64-linux-gnu/libc/lib64/* lib
+<span class="token builtin class-name">cd</span> lib
+<span class="token comment"># 新建ld-linux-aarch64.so.1 -> ld-2.28.so的软连接</span>
+<span class="token function">sudo</span> <span class="token function">ln</span> <span class="token parameter variable">-s</span> ld-2.28.so ld-linux-aarch64.so.1
+<span class="token builtin class-name">cd</span> <span class="token punctuation">..</span>
+<span class="token function">sudo</span> <span class="token function">vim</span> etc/profile
+<span class="token comment"># 将hello拷贝至根文件系统中，../hello可替换为hello实际存放的位置</span>
+<span class="token function">sudo</span> <span class="token function">cp</span> <span class="token punctuation">..</span>/hello ./
+<span class="token builtin class-name">cd</span> <span class="token punctuation">..</span>
+<span class="token function">sudo</span> <span class="token function">umount</span> initrd
+<span class="token function">gzip</span> <span class="token parameter variable">--best</span> <span class="token parameter variable">-c</span> rootfs.img <span class="token operator">></span> rootfs.img.gz<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>其中<code>profile</code>文件的内容为：</p>
+<pre class="line-numbers language-bash" data-language="bash"><div class="caption"><span>etc/profile</span></div><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable">LD_LIBRARY_PATH</span><span class="token operator">=</span>/lib:<span class="token variable">$LD_LIBRARY_PATH</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="编译内核"><a href="#编译内核" class="headerlink" title="编译内核"></a>编译内核</h2><p>编译流程基本参考<a href="/2023/12/29/how-to-read-linux-source/" title="如何阅读linux源码">如何阅读linux源码</a>，多了<code>make menuconfig</code>。在linux源码根目录下执行以下命令：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">make</span> distclean
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">ARCH</span><span class="token operator">=</span>arm64
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">CROSS_COMPILE</span><span class="token operator">=</span>aarch64-linux-gnu-
+<span class="token function">make</span> defconfig
+<span class="token function">make</span> menuconfig
+<span class="token function">make</span> <span class="token parameter variable">-j4</span> Image<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><code>make menuconfig</code>我们关注以下选项：</p>
+<ul>
+<li><code>Device Drivers -&gt; Block devices -&gt; RAM block device support</code>，输入<code>Y</code>，然后该选项下的<code>Default number of RAM disks</code>设置为16，<code>Default RAM disk size (kbytes)</code>设置为65536，为我们制作ext4 img时的大小。</li>
+<li><code>Kernel hacking -&gt; Compile-time checks and compiler options -&gt; Compile the kernel with debug info</code>，输入<code>Y</code>，该选项下的子选项都为<code>N</code>。</li>
+<li><code>Kernel hacking -&gt; Compile-time checks and compiler options -&gt; Provide GDB scripts for kernel debugging</code>，输入<code>Y</code>。</li>
+<li><code>Kernel hacking -&gt; Kernel debugging</code>，输入<code>Y</code>。</li>
+</ul>
+<p>结束后，我们能在<code>arch/arm64/boot</code>下找到<code>Image</code>文件外，还能在linux源码根目录下找到和调试相关的<code>vmlinux</code>和<code>vmlinux-gdb.py</code>。</p>
+<h2 id="启动内核"><a href="#启动内核" class="headerlink" title="启动内核"></a>启动内核</h2><p>我们将之前步骤生成的rootfs.img.gz拷贝至linux源码目录的<code>arch/arm64/boot</code>下，这步可选择。然后在linux源码目录下执行以下命令：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> arch/arm64/boot
+qemu-system-aarch64 <span class="token parameter variable">-machine</span> virt,virtualization<span class="token operator">=</span>true,gic-version<span class="token operator">=</span><span class="token number">2</span> <span class="token parameter variable">-nographic</span> <span class="token parameter variable">-m</span> <span class="token assign-left variable">size</span><span class="token operator">=</span>1024M <span class="token parameter variable">-cpu</span> cortex-a72 <span class="token parameter variable">-smp</span> <span class="token number">2</span> <span class="token parameter variable">-kernel</span> Image <span class="token parameter variable">-initrd</span> rootfs.img.gz <span class="token parameter variable">-append</span> <span class="token string">"root=/dev/ram rw console=ttyAMA0 loglevel=7"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>有关上述参数可以去<a href="https://www.qemu.org/docs/master/system/invocation.html">qemu - Invocation</a>以及<a href="https://www.qemu.org/docs/master/system/arm/virt.html">qemu - ‘virt’ generic virtual platform (virt)</a>了解。<br>这样内核就启动起来了，并且能执行<code>hello</code>程序，只复制了部分显示：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">VFS: Mounted root <span class="token punctuation">(</span>ext4 filesystem<span class="token punctuation">)</span> on device <span class="token number">1</span>:0.
+devtmpfs: mounted
+Freeing unused kernel memory: 416K <span class="token punctuation">(</span>ffffffc00091a000 - ffffffc000982000<span class="token punctuation">)</span>
+Freeing alternatives memory: 12K <span class="token punctuation">(</span>ffffffc000982000 - ffffffc000985000<span class="token punctuation">)</span>
+welcome to my linux<span class="token operator">!</span>
+
+Please press Enter to activate this console. 
+/ <span class="token comment"># ls</span>
+bin         etc         lib         lost+found  sbin        tmp
+dev         hello       linuxrc     proc        sys         usr
+/ <span class="token comment"># ./hello</span>
+Hello, World<span class="token operator">!</span>
+/ <span class="token comment"># </span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>输入<code>Ctrl+A</code>，松开后输入<code>X</code>，退出qemu。</p>
+<h2 id="调试内核"><a href="#调试内核" class="headerlink" title="调试内核"></a>调试内核</h2><p>在linux源码目录下，我们先在一个命令行里执行以下命令：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> arch/arm64/boot
+qemu-system-aarch64 <span class="token parameter variable">-machine</span> virt,virtualization<span class="token operator">=</span>true,gic-version<span class="token operator">=</span><span class="token number">2</span> <span class="token parameter variable">-nographic</span> <span class="token parameter variable">-m</span> <span class="token assign-left variable">size</span><span class="token operator">=</span>1024M <span class="token parameter variable">-cpu</span> cortex-a72 <span class="token parameter variable">-smp</span> <span class="token number">2</span> <span class="token parameter variable">-kernel</span> Image <span class="token parameter variable">-initrd</span> rootfs.img.gz <span class="token parameter variable">-append</span> <span class="token string">"root=/dev/ram rw console=ttyAMA0 loglevel=7"</span> <span class="token parameter variable">-s</span> <span class="token parameter variable">-S</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>执行完后什么打印都不会有，因为有<code>-S</code>参数，会在启动时挂起，且<code>-s</code>参数让<code>gdb server</code>在端口<code>1234</code>监听，等待连接。<br>然后我们在linux源码目录下，另一个命令行执行以下命令：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gdb-multiarch vmlinux<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>然后在<code>gdb-multiarch</code>里连接<code>gdb server</code>，设置断点，继续运行内核直到断点：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> target remote:1234
+Remote debugging using :1234
+0x0000000040000000 <span class="token keyword">in</span> ?? <span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> b start_kernel
+Breakpoint <span class="token number">1</span> at 0xffffffc00091a5a8: <span class="token function">file</span> init/main.c, line <span class="token number">502</span>.
+<span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> c
+Continuing.
+
+Thread <span class="token number">1</span> hit Breakpoint <span class="token number">1</span>, start_kernel <span class="token punctuation">(</span><span class="token punctuation">)</span> at init/main.c:502
+<span class="token number">502</span>		set_task_stack_end_magic<span class="token punctuation">(</span><span class="token operator">&amp;</span>init_task<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> x /16i 0xffffffc00091a5a8
+<span class="token operator">=</span><span class="token operator">></span> 0xffffffc00091a5a8 <span class="token operator">&lt;</span>start_kernel<span class="token operator">></span>:	stp	x29, x30, <span class="token punctuation">[</span>sp, <span class="token comment">#-80]!</span>
+   0xffffffc00091a5ac <span class="token operator">&lt;</span>start_kernel+<span class="token operator"><span class="token file-descriptor important">4</span>></span>:	
+    adrp	x0, 0xffffffc000994000 <span class="token operator">&lt;</span>inet6_offloads+9<span class="token operator"><span class="token file-descriptor important">6</span>></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>确实是断在了<code>start_kernel</code>的第一条指令处。这样我们就可以调试内核了。<br>linux源码根目录下<code>vmlinux-gdb.py</code>可以让我们在<code>gdb</code>里更容易地查看一些linux的变量，结构体等：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> add-auto-load-safe-path ./
+<span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> <span class="token builtin class-name">source</span> vmlinux-gdb.py
+<span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> lx-symbols
+loading vmlinux
+<span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> <span class="token function">apropos</span> lx
+<span class="token keyword">function</span> lx_current -- Return current task.
+<span class="token keyword">function</span> lx_module -- Find module by name and <span class="token builtin class-name">return</span> the module variable.
+<span class="token keyword">function</span> lx_per_cpu -- Return per-cpu variable.
+<span class="token keyword">function</span> lx_task_by_pid -- Find Linux task by PID and <span class="token builtin class-name">return</span> the task_struct variable.
+<span class="token keyword">function</span> lx_thread_info -- Calculate Linux thread_info from task variable.
+lx-dmesg -- Print Linux kernel log buffer.
+lx-lsmod -- List currently loaded modules.
+lx-symbols -- <span class="token punctuation">(</span>Re-<span class="token punctuation">)</span>load symbols of Linux kernel and currently loaded modules.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>具体使用方式可以去<a href="https://www.kernel.org/doc/html/latest/dev-tools/gdb-kernel-debugging.html">官方文档</a>查看。例如：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> <span class="token builtin class-name">help</span> lx-dmesg
+Print Linux kernel log buffer.
+<span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> lx-dmesg
+<span class="token punctuation">[</span>    <span class="token number">0.000000</span><span class="token punctuation">]</span> b<span class="token string">'Booting Linux on physical CPU 0x0'</span>
+<span class="token punctuation">[</span>    <span class="token number">0.000000</span><span class="token punctuation">]</span> b<span class="token string">'Initializing cgroup subsys cpu'</span>
+<span class="token punctuation">[</span>    <span class="token number">0.000000</span><span class="token punctuation">]</span> b<span class="token string">'Linux version 4.1.10 (@ubuntu) (gcc version 8.2.1 20180802 (GNU Toolchain for the A-profile Architecture 8.2-2018-08 (arm-rel-8.23)) ) #1 SMP PREEMPT Wed Dec 6 16:15:57 CST 2023'</span>
+<span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> <span class="token builtin class-name">help</span> <span class="token keyword">function</span> lx_per_cpu
+Return per-cpu variable.
+
+<span class="token variable">$lx_per_cpu</span><span class="token punctuation">(</span><span class="token string">"VAR"</span><span class="token punctuation">[</span>, CPU<span class="token punctuation">]</span><span class="token punctuation">)</span>: Return the per-cpu variable called VAR <span class="token keyword">for</span> the
+given CPU number. If CPU is omitted, the CPU of the current context is used.
+Note that VAR has to be quoted as string.
+<span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> p <span class="token variable">$lx_per_cpu</span><span class="token punctuation">(</span><span class="token string">"runqueues"</span><span class="token punctuation">)</span>.nr_running
+<span class="token variable">$1</span> <span class="token operator">=</span> <span class="token number">4</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="补充：linux-6-6-3"><a href="#补充：linux-6-6-3" class="headerlink" title="补充：linux 6.6.3"></a>补充：linux 6.6.3</h2><p>对于<code>6.6.3</code>版本的linux，编译，启动和调试有些区别，在此记录。</p>
+<h3 id="编译内核-1"><a href="#编译内核-1" class="headerlink" title="编译内核"></a>编译内核</h3><p>在linux源码根目录下执行以下命令：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">make</span> distclean
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">ARCH</span><span class="token operator">=</span>arm64
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">CROSS_COMPILE</span><span class="token operator">=</span>aarch64-none-linux-gnu-
+<span class="token function">make</span> defconfig
+<span class="token function">make</span> menuconfig
+<span class="token function">make</span> <span class="token parameter variable">-j4</span> Image<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><code>make menuconfig</code>我们关注以下选项：</p>
+<ul>
+<li><code>Device Drivers -&gt; Block devices -&gt; RAM block device support</code>，输入<code>Y</code>，然后该选项下的<code>Default number of RAM disks</code>设置为16，<code>Default RAM disk size (kbytes)</code>设置为65536，为我们制作ext4 img时的大小。</li>
+<li><code>Kernel hacking -&gt; Compile-time checks and compiler options -&gt; Reduce debugging information</code>，输入<code>N</code>。</li>
+<li><code>Kernel hacking -&gt; Compile-time checks and compiler options -&gt; Provide GDB scripts for kernel debugging</code>，输入<code>Y</code>。</li>
+<li><code>Kernel hacking -&gt; Kernel debugging</code>，输入<code>Y</code>。</li>
+<li><code>Kernel hacking -&gt; Compressed Debug information</code>，选择<code>Don&#39;t compress debug information</code>。</li>
+</ul>
+<h3 id="启动内核-1"><a href="#启动内核-1" class="headerlink" title="启动内核"></a>启动内核</h3><p>另一种启动内核的命令：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">qemu-system-aarch64 <span class="token parameter variable">-machine</span> virt,virtualization<span class="token operator">=</span>true,gic-version<span class="token operator">=</span><span class="token number">3</span> <span class="token parameter variable">-nographic</span> <span class="token parameter variable">-m</span> <span class="token assign-left variable">size</span><span class="token operator">=</span>1024M <span class="token parameter variable">-cpu</span> cortex-a72 <span class="token parameter variable">-smp</span> <span class="token number">2</span> <span class="token parameter variable">-kernel</span> Image <span class="token parameter variable">-drive</span> <span class="token assign-left variable">format</span><span class="token operator">=</span>raw,file<span class="token operator">=</span>rootfs.img <span class="token parameter variable">-append</span> <span class="token string">"root=/dev/vda rw loglevel=7"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="调试内核-1"><a href="#调试内核-1" class="headerlink" title="调试内核"></a>调试内核</h3><p>需要关闭<code>KASLR</code>，一种方式是在编译阶段<code>make menuconfig</code>时，将<code>Kernel Features -&gt; Randomize the address of the kernel image</code>输入<code>N</code>，还有一种方式是linux的启动参数增加<code>nokaslr</code>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">qemu-system-aarch64 <span class="token parameter variable">-machine</span> virt,virtualization<span class="token operator">=</span>true,gic-version<span class="token operator">=</span><span class="token number">3</span> <span class="token parameter variable">-nographic</span> <span class="token parameter variable">-m</span> <span class="token assign-left variable">size</span><span class="token operator">=</span>1024M <span class="token parameter variable">-cpu</span> cortex-a72 <span class="token parameter variable">-smp</span> <span class="token number">2</span> <span class="token parameter variable">-kernel</span> Image <span class="token parameter variable">-drive</span> <span class="token assign-left variable">format</span><span class="token operator">=</span>raw,file<span class="token operator">=</span>rootfs.img <span class="token parameter variable">-append</span> <span class="token string">"root=/dev/vda rw nokaslr loglevel=7"</span> <span class="token parameter variable">-s</span> <span class="token parameter variable">-S</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>]]></content>
+      <tags>
+        <tag>linux</tag>
+        <tag>qemu</tag>
+        <tag>arm64</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>如何阅读linux源码</title>
     <url>/2023/12/29/how-to-read-linux-source/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<p>本文提供三种方法阅读linux源码：</p>
+<ul>
+<li>在线阅读</li>
+<li>vim、cscope</li>
+<li>vscode、clangd（推荐）</li>
+</ul>
+<p>操作系统：Ubuntu 22.04</p>
+<span id="more"></span>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>对于后两种方法需要先下载linux源码，<a href="https://mirrors.edge.kernel.org/pub/linux/kernel/">官方下载地址</a>国内下载速度会很慢，建议去<a href="http://ftp.sjtu.edu.cn/sites/ftp.kernel.org/pub/linux/kernel/">这里</a>下载。<br>我下载了两个版本，一个是较早的<code>4.1.10</code>，一个是最近的<code>6.6.3</code>。</p>
+<h2 id="在线阅读"><a href="#在线阅读" class="headerlink" title="在线阅读"></a>在线阅读</h2><p>这里推荐<a href="https://elixir.bootlin.com/linux/latest/source">elixir.bootlin</a>，不仅有过往linux的所有版本，也有跳转和搜索。</p>
+<h2 id="vim、cscope"><a href="#vim、cscope" class="headerlink" title="vim、cscope"></a>vim、cscope</h2><p>以下参考：<a href="https://cscope.sourceforge.net/">cscope官网</a></p>
+<h3 id="安装vim和cscope"><a href="#安装vim和cscope" class="headerlink" title="安装vim和cscope"></a>安装vim和cscope</h3><p>在安装以前，先确认操作系统是否已经安装：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">cscope <span class="token parameter variable">--version</span>
+<span class="token function">vim</span> <span class="token parameter variable">--version</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>如果已安装，则会打印出版本号，否则执行以下命令进行安装：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> cscope
+<span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> <span class="token function">vim</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>完成后再次尝试打印版本号，检查是否安装成功。</p>
+<h3 id="生成cscope数据库"><a href="#生成cscope数据库" class="headerlink" title="生成cscope数据库"></a>生成cscope数据库</h3><p>首先生成一个名为<code>cscope.files</code>的文件，这个文件指明了所有需要cscope扫描的文件的包含文件名的绝对路径：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">LNX</span><span class="token operator">=</span>/home/currentuser/Documents/code/linux/linux-4.1.10
+<span class="token builtin class-name">cd</span> / 	
+<span class="token function">find</span>  <span class="token variable">$LNX</span>                                                                <span class="token punctuation">\</span>
+	<span class="token parameter variable">-path</span> <span class="token string">"<span class="token variable">$LNX</span>/arch/*"</span> <span class="token operator">!</span> <span class="token parameter variable">-path</span> <span class="token string">"<span class="token variable">$LNX</span>/arch/arm64*"</span> <span class="token parameter variable">-prune</span> <span class="token parameter variable">-o</span>               <span class="token punctuation">\</span>
+	<span class="token parameter variable">-path</span> <span class="token string">"<span class="token variable">$LNX</span>/Documentation*"</span> <span class="token parameter variable">-prune</span> <span class="token parameter variable">-o</span>                                 <span class="token punctuation">\</span>
+	<span class="token parameter variable">-path</span> <span class="token string">"<span class="token variable">$LNX</span>/firmware*"</span> <span class="token parameter variable">-prune</span> <span class="token parameter variable">-o</span>                                 <span class="token punctuation">\</span>
+	<span class="token parameter variable">-path</span> <span class="token string">"<span class="token variable">$LNX</span>/scripts*"</span> <span class="token parameter variable">-prune</span> <span class="token parameter variable">-o</span>                                       <span class="token punctuation">\</span>
+	<span class="token parameter variable">-path</span> <span class="token string">"<span class="token variable">$LNX</span>/samples*"</span> <span class="token parameter variable">-prune</span> <span class="token parameter variable">-o</span>                                       <span class="token punctuation">\</span>
+	<span class="token parameter variable">-path</span> <span class="token string">"<span class="token variable">$LNX</span>/drivers*"</span> <span class="token parameter variable">-prune</span> <span class="token parameter variable">-o</span>                                       <span class="token punctuation">\</span>
+	<span class="token parameter variable">-path</span> <span class="token string">"<span class="token variable">$LNX</span>/sound*"</span> <span class="token parameter variable">-prune</span> <span class="token parameter variable">-o</span>                                       <span class="token punctuation">\</span>
+	<span class="token parameter variable">-path</span> <span class="token string">"<span class="token variable">$LNX</span>/tools*"</span> <span class="token parameter variable">-prune</span> <span class="token parameter variable">-o</span>                                       <span class="token punctuation">\</span>
+	<span class="token parameter variable">-name</span> <span class="token string">"*.[chxsS]"</span> <span class="token parameter variable">-print</span> <span class="token operator">></span>/home/currentuser/Documents/code/linux/cscope.files<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>其中<code>LNX</code>是存放linux源码的绝对路径，<code>-print &gt;</code>后是生成<code>cscope.files</code>的包含文件名的路径，按照实际修改。<code>-path</code>部分按需修改。在以上命令生成的<code>cscope.files</code>指明的路径中，<code>$LNX/arch</code>下只有<code>arm64*</code>下的文件路径，且不包含<code>$LNX/Documentation*</code>，<code>$LNX/firmware*</code>，<code>$LNX/scripts*</code>，<code>$LNX/samples*</code>，<code>$LNX/drivers*</code>，<code>$LNX/sound*</code>和<code>$LNX/tools*</code>下的文件路径。像这样排除不感兴趣的文件路径，能减小最终生成的cscope数据库文件的大小，同时能让阅读代码时的跳转更为高效，比如有关<code>arch</code>的实现就直接跳转到<code>arm64</code>的实现，而不会列出其他架构的实现让你选择。当然也存在一个项目不需要排除文件路径的情况，那么可以跳过生成<code>cscope.files</code>的步骤，直接在项目的根目录下执行<code>cscope -R</code>生成cscope数据库即可，<a href="https://cscope.sourceforge.net/large_projects.html">官网</a>有更为详细的说明。<br>然后执行以下命令生成cscope数据库：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> /home/currentuser/Documents/code/linux/     <span class="token comment"># the directory with 'cscope.files'</span>
+cscope <span class="token parameter variable">-b</span> <span class="token parameter variable">-q</span> <span class="token parameter variable">-k</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p><code>cd</code>后是存放<code>cscope.files</code>的绝对路径，按照实际修改。<code>cscope</code>命令的<code>-b</code>，<code>-q</code>和<code>-k</code>分别有以下作用：</p>
+<table>
+<thead>
+<tr>
+<th align="left"><code>cscope</code>命令参数</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>-b</code></td>
+<td align="left">只生成数据库，不启动图形用户界面</td>
+</tr>
+<tr>
+<td align="left"><code>-q</code></td>
+<td align="left">额外生成<code>inverted index</code>文件让大数据库的查找更为迅速</td>
+</tr>
+<tr>
+<td align="left"><code>-k</code></td>
+<td align="left">不会去<code>/usr/include</code>目录下查找源码中<code>#include</code>的头文件，对于操作系统或者<code>C library</code>的源码尤其有用</td>
+</tr>
+</tbody></table>
+<p>执行完毕后，会在<code>cscope.files</code>所在的目录下生成三个文件，<code>cscope.in.out</code>，<code>cscope.out</code>和<code>cscope.po.out</code>，这就是cscope数据库文件。<strong>将这几个文件移动到linux源码根目录下</strong>。</p>
+<h3 id="vim配置"><a href="#vim配置" class="headerlink" title="vim配置"></a>vim配置</h3><p>在linux当前用户的Home目录下(&#x2F;home&#x2F;currentuser)找到<code>.vimrc</code>文件，如果没有则自行新增一个。在<code>.vimrc</code>中添加以下内容：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">set</span> number
+<span class="token builtin class-name">set</span> <span class="token assign-left variable">mouse</span><span class="token operator">=</span>a
+
+<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>
+<span class="token string">" CSCOPE settings for vim           
+"</span>"<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>"
+<span class="token string">" This tests to see if vim was configured with the '--enable-cscope' option
+"</span> when it was compiled.  If it wasn<span class="token string">'t, time to recompile vim... 
+if has("cscope")
+
+    """"""""""""" Standard cscope/vim boilerplate
+
+    set csprg=/usr/bin/cscope
+    " use both cscope and ctag for '</span>ctrl-<span class="token punctuation">]</span><span class="token string">', '</span>:ta<span class="token string">', and '</span><span class="token function">vim</span> -t<span class="token string">'
+    set cscopetag
+
+    " check cscope for definition of a symbol before checking ctags: set to 1
+    " if you want the reverse search order.
+    set csto=0
+
+    " add any cscope database in current directory
+    if filereadable("cscope.out")
+        cs add cscope.out  
+    " else add the database pointed to by environment variable 
+    elseif $CSCOPE_DB != ""
+        cs add $CSCOPE_DB
+    endif
+
+    " show msg when any other cscope db added
+    set cscopeverbose
+    
+    set cscopequickfix=s-,c-,d-,i-,t-,e-  
+
+
+    """"""""""""" My cscope/vim key mappings
+    "
+    " The following maps all invoke one of the following cscope search types:
+    "
+    "   '</span>s<span class="token string">'   symbol: find all references to the token under cursor
+    "   '</span>g<span class="token string">'   global: find global definition(s) of the token under cursor
+    "   '</span>c<span class="token string">'   calls:  find all calls to the function name under cursor
+    "   '</span>t<span class="token string">'   text:   find all instances of the text under cursor
+    "   '</span>e<span class="token string">'   egrep:  egrep search for the word under cursor
+    "   '</span>f<span class="token string">'   file:   open the filename under cursor
+    "   '</span>i<span class="token string">'   includes: find files that include the filename under cursor
+    "   '</span>d<span class="token string">'   called: find functions that function under cursor calls
+    "
+    " Below are three sets of the maps: one set that just jumps to your
+    " search result, one that splits the existing vim window horizontally and
+    " diplays your search result in the new window, and one that does the same
+    " thing, but does a vertical split instead (vim 6 only).
+    "
+    " I'</span>ve used CTRL-<span class="token punctuation">\</span> and CTRL-@ as the starting keys <span class="token keyword">for</span> these maps, as it<span class="token string">'s
+    " unlikely that you need their default mappings (CTRL-\'</span>s default use is
+    <span class="token string">" as part of CTRL-\ CTRL-N typemap, which basically just does the same
+    "</span> thing as hitting <span class="token string">'escape'</span><span class="token builtin class-name">:</span> CTRL-@ doesn<span class="token string">'t seem to have any default use).
+    " If you don'</span>t like using <span class="token string">'CTRL-@'</span> or CTRL-<span class="token punctuation">\</span>, , you can change some or all
+    <span class="token string">" of these maps to use other keys.  One likely candidate is 'CTRL-_'
+    "</span> <span class="token punctuation">(</span>which also maps to CTRL-/, <span class="token function">which</span> is easier to <span class="token builtin class-name">type</span><span class="token punctuation">)</span>.  By default it is
+    <span class="token string">" used to switch between Hebrew and English keyboard mode.
+    "</span>
+    <span class="token string">" All of the maps involving the &lt;cfile> macro use '^&lt;cfile>$': this is so
+    "</span> that searches over <span class="token string">'#include &lt;time.h>" return only references to
+    " '</span>time.h<span class="token string">', and not '</span>sys/time.h<span class="token string">', etc. (by default cscope will return all
+    " files that contain '</span>time.h<span class="token string">' as part of their name).
+
+
+    " To do the first type of search, hit '</span>CTRL-<span class="token punctuation">\</span>', followed by one of the
+    <span class="token string">" cscope search types above (s,g,c,t,e,f,i,d).  The result of your cscope
+    "</span> search will be displayed <span class="token keyword">in</span> the current window.  You can use CTRL-T to
+    <span class="token string">" go back to where you were before the search.  
+    "</span>
+
+    nmap <span class="token operator">&lt;</span>C-<span class="token punctuation">\</span><span class="token operator">></span>s :cs <span class="token function">find</span> s <span class="token operator">&lt;</span>C-R<span class="token operator">>=</span>expand<span class="token punctuation">(</span><span class="token string">"&lt;cword>"</span><span class="token punctuation">)</span><span class="token operator">&lt;</span>CR<span class="token operator">></span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+    nmap <span class="token operator">&lt;</span>C-<span class="token punctuation">\</span><span class="token operator">></span>g :cs <span class="token function">find</span> g <span class="token operator">&lt;</span>C-R<span class="token operator">>=</span>expand<span class="token punctuation">(</span><span class="token string">"&lt;cword>"</span><span class="token punctuation">)</span><span class="token operator">&lt;</span>CR<span class="token operator">></span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+    nmap <span class="token operator">&lt;</span>C-<span class="token punctuation">\</span><span class="token operator">></span>c :cs <span class="token function">find</span> c <span class="token operator">&lt;</span>C-R<span class="token operator">>=</span>expand<span class="token punctuation">(</span><span class="token string">"&lt;cword>"</span><span class="token punctuation">)</span><span class="token operator">&lt;</span>CR<span class="token operator">></span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+    nmap <span class="token operator">&lt;</span>C-<span class="token punctuation">\</span><span class="token operator">></span>t :cs <span class="token function">find</span> t <span class="token operator">&lt;</span>C-R<span class="token operator">>=</span>expand<span class="token punctuation">(</span><span class="token string">"&lt;cword>"</span><span class="token punctuation">)</span><span class="token operator">&lt;</span>CR<span class="token operator">></span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+    nmap <span class="token operator">&lt;</span>C-<span class="token punctuation">\</span><span class="token operator">></span>e :cs <span class="token function">find</span> e <span class="token operator">&lt;</span>C-R<span class="token operator">>=</span>expand<span class="token punctuation">(</span><span class="token string">"&lt;cword>"</span><span class="token punctuation">)</span><span class="token operator">&lt;</span>CR<span class="token operator">></span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+    nmap <span class="token operator">&lt;</span>C-<span class="token punctuation">\</span><span class="token operator">></span>f :cs <span class="token function">find</span> f <span class="token operator">&lt;</span>C-R<span class="token operator">>=</span>expand<span class="token punctuation">(</span><span class="token string">"&lt;cfile>"</span><span class="token punctuation">)</span><span class="token operator">&lt;</span>CR<span class="token operator">></span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+    nmap <span class="token operator">&lt;</span>C-<span class="token punctuation">\</span><span class="token operator">></span>i :cs <span class="token function">find</span> i ^<span class="token operator">&lt;</span>C-R<span class="token operator">>=</span>expand<span class="token punctuation">(</span><span class="token string">"&lt;cfile>"</span><span class="token punctuation">)</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>$<span class="token operator">&lt;</span>CR<span class="token operator">></span>
+    nmap <span class="token operator">&lt;</span>C-<span class="token punctuation">\</span><span class="token operator">></span>d :cs <span class="token function">find</span> d <span class="token operator">&lt;</span>C-R<span class="token operator">>=</span>expand<span class="token punctuation">(</span><span class="token string">"&lt;cword>"</span><span class="token punctuation">)</span><span class="token operator">&lt;</span>CR<span class="token operator">></span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+
+
+    <span class="token string">" Using 'CTRL-spacebar' (intepreted as CTRL-@ by vim) then a search type
+    "</span> makes the <span class="token function">vim</span> window <span class="token function">split</span> horizontally, with search result displayed <span class="token keyword">in</span>
+    <span class="token string">" the new window.
+    "</span>
+    <span class="token string">" (Note: earlier versions of vim may not have the :scs command, but it
+    "</span> can be simulated roughly via:
+    <span class="token string">"    nmap &lt;C-@>s &lt;C-W>&lt;C-S> :cs find s &lt;C-R>=expand("</span><span class="token operator">&lt;</span>cword<span class="token operator">></span><span class="token string">")&lt;CR>&lt;CR>
+
+    nmap &lt;C-@>s :scs find s &lt;C-R>=expand("</span><span class="token operator">&lt;</span>cword<span class="token operator">></span><span class="token string">")&lt;CR>&lt;CR>
+    nmap &lt;C-@>g :scs find g &lt;C-R>=expand("</span><span class="token operator">&lt;</span>cword<span class="token operator">></span><span class="token string">")&lt;CR>&lt;CR>
+    nmap &lt;C-@>c :scs find c &lt;C-R>=expand("</span><span class="token operator">&lt;</span>cword<span class="token operator">></span><span class="token string">")&lt;CR>&lt;CR>
+    nmap &lt;C-@>t :scs find t &lt;C-R>=expand("</span><span class="token operator">&lt;</span>cword<span class="token operator">></span><span class="token string">")&lt;CR>&lt;CR>
+    nmap &lt;C-@>e :scs find e &lt;C-R>=expand("</span><span class="token operator">&lt;</span>cword<span class="token operator">></span><span class="token string">")&lt;CR>&lt;CR>
+    nmap &lt;C-@>f :scs find f &lt;C-R>=expand("</span><span class="token operator">&lt;</span>cfile<span class="token operator">></span><span class="token string">")&lt;CR>&lt;CR>
+    nmap &lt;C-@>i :scs find i ^&lt;C-R>=expand("</span><span class="token operator">&lt;</span>cfile<span class="token operator">></span><span class="token string">")&lt;CR>$&lt;CR>
+    nmap &lt;C-@>d :scs find d &lt;C-R>=expand("</span><span class="token operator">&lt;</span>cword<span class="token operator">></span><span class="token string">")&lt;CR>&lt;CR>
+
+
+    "</span> Hitting CTRL-space *twice* before the search <span class="token builtin class-name">type</span> does a vertical 
+    <span class="token string">" split instead of a horizontal one (vim 6 and up only)
+    "</span>
+    <span class="token string">" (Note: you may wish to put a 'set splitright' in your .vimrc
+    "</span> <span class="token keyword">if</span> you prefer the new window on the right instead of the left
+
+    nmap <span class="token operator">&lt;</span>C-@<span class="token operator">></span><span class="token operator">&lt;</span>C-@<span class="token operator">></span>s :vert scs <span class="token function">find</span> s <span class="token operator">&lt;</span>C-R<span class="token operator">>=</span>expand<span class="token punctuation">(</span><span class="token string">"&lt;cword>"</span><span class="token punctuation">)</span><span class="token operator">&lt;</span>CR<span class="token operator">></span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+    nmap <span class="token operator">&lt;</span>C-@<span class="token operator">></span><span class="token operator">&lt;</span>C-@<span class="token operator">></span>g :vert scs <span class="token function">find</span> g <span class="token operator">&lt;</span>C-R<span class="token operator">>=</span>expand<span class="token punctuation">(</span><span class="token string">"&lt;cword>"</span><span class="token punctuation">)</span><span class="token operator">&lt;</span>CR<span class="token operator">></span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+    nmap <span class="token operator">&lt;</span>C-@<span class="token operator">></span><span class="token operator">&lt;</span>C-@<span class="token operator">></span>c :vert scs <span class="token function">find</span> c <span class="token operator">&lt;</span>C-R<span class="token operator">>=</span>expand<span class="token punctuation">(</span><span class="token string">"&lt;cword>"</span><span class="token punctuation">)</span><span class="token operator">&lt;</span>CR<span class="token operator">></span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+    nmap <span class="token operator">&lt;</span>C-@<span class="token operator">></span><span class="token operator">&lt;</span>C-@<span class="token operator">></span>t :vert scs <span class="token function">find</span> t <span class="token operator">&lt;</span>C-R<span class="token operator">>=</span>expand<span class="token punctuation">(</span><span class="token string">"&lt;cword>"</span><span class="token punctuation">)</span><span class="token operator">&lt;</span>CR<span class="token operator">></span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+    nmap <span class="token operator">&lt;</span>C-@<span class="token operator">></span><span class="token operator">&lt;</span>C-@<span class="token operator">></span>e :vert scs <span class="token function">find</span> e <span class="token operator">&lt;</span>C-R<span class="token operator">>=</span>expand<span class="token punctuation">(</span><span class="token string">"&lt;cword>"</span><span class="token punctuation">)</span><span class="token operator">&lt;</span>CR<span class="token operator">></span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+    nmap <span class="token operator">&lt;</span>C-@<span class="token operator">></span><span class="token operator">&lt;</span>C-@<span class="token operator">></span>f :vert scs <span class="token function">find</span> f <span class="token operator">&lt;</span>C-R<span class="token operator">>=</span>expand<span class="token punctuation">(</span><span class="token string">"&lt;cfile>"</span><span class="token punctuation">)</span><span class="token operator">&lt;</span>CR<span class="token operator">></span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+    nmap <span class="token operator">&lt;</span>C-@<span class="token operator">></span><span class="token operator">&lt;</span>C-@<span class="token operator">></span>i :vert scs <span class="token function">find</span> i ^<span class="token operator">&lt;</span>C-R<span class="token operator">>=</span>expand<span class="token punctuation">(</span><span class="token string">"&lt;cfile>"</span><span class="token punctuation">)</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>$<span class="token operator">&lt;</span>CR<span class="token operator">></span>
+    nmap <span class="token operator">&lt;</span>C-@<span class="token operator">></span><span class="token operator">&lt;</span>C-@<span class="token operator">></span>d :vert scs <span class="token function">find</span> d <span class="token operator">&lt;</span>C-R<span class="token operator">>=</span>expand<span class="token punctuation">(</span><span class="token string">"&lt;cword>"</span><span class="token punctuation">)</span><span class="token operator">&lt;</span>CR<span class="token operator">></span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+
+
+    <span class="token string">""</span><span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span>"<span class="token string">""</span> key map timeouts
+    <span class="token string">"
+    "</span> By default Vim will only <span class="token function">wait</span> <span class="token number">1</span> second <span class="token keyword">for</span> each keystroke <span class="token keyword">in</span> a mapping.
+    <span class="token string">" You may find that too short with the above typemaps.  If so, you should
+    "</span> either turn off mapping timeouts via <span class="token string">'notimeout'</span><span class="token builtin class-name">.</span>
+    <span class="token string">"
+    "</span><span class="token builtin class-name">set</span> notimeout 
+    <span class="token string">"
+    "</span> Or, you can keep timeouts, by uncommenting the timeoutlen line below,
+    <span class="token string">" with your own personal favorite value (in milliseconds):
+    "</span>
+    <span class="token string">"set timeoutlen=4000
+    "</span>
+    <span class="token string">" Either way, since mapping timeout settings by default also set the
+    "</span> timeouts <span class="token keyword">for</span> multicharacter <span class="token string">'keys codes'</span> <span class="token punctuation">(</span>like <span class="token operator">&lt;</span>F<span class="token operator"><span class="token file-descriptor important">1</span>></span><span class="token punctuation">)</span>, you should also
+    <span class="token string">" set ttimeout and ttimeoutlen: otherwise, you will experience strange
+    "</span> delays as <span class="token function">vim</span> waits <span class="token keyword">for</span> a keystroke after you hit ESC <span class="token punctuation">(</span>it will be
+    <span class="token string">" waiting to see if the ESC is actually part of a key code like &lt;F1>).
+    "</span>
+    <span class="token string">"set ttimeout 
+    "</span>
+    <span class="token string">" personally, I find a tenth of a second to work well for key code
+    "</span> timeouts. If you experience problems and have a slow terminal or network
+    <span class="token string">" connection, set it higher.  If you don't set ttimeoutlen, the value for
+    "</span> timeoutlent <span class="token punctuation">(</span>default: <span class="token number">1000</span> <span class="token operator">=</span> <span class="token number">1</span> second, <span class="token function">which</span> is sluggish<span class="token punctuation">)</span> is used.
+    <span class="token string">"
+    "</span><span class="token builtin class-name">set</span> <span class="token assign-left variable">ttimeoutlen</span><span class="token operator">=</span><span class="token number">100</span>
+
+endif<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>其中<code>set number</code>用于vim显示行号，<code>set mouse=a</code>用于vim启用鼠标。有关cscope的部分主要参考了<a href="https://cscope.sourceforge.net/cscope_maps.vim">官网</a>，除此以外，还推荐阅读<a href="https://blog.csdn.net/dengxiayehu/article/details/6330200">这篇文章</a>。这样一来，在linux源码根目录下执行<code>vim</code>命令后，会尝试添加当前目录下的cscope数据库，然后就可以使用cscope相关的命令和映射的快捷键了。</p>
+<h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><p>vim的菜鸟教程可参考<a href="https://www.runoob.com/linux/linux-vim.html">这里</a>，在此不再赘述。<br>在linux源码根目录下执行<code>vim</code>命令，以下为vim下cscope相关的比较常用的命令（需切换至底线命令模式执行）和快捷键（需切换至命令模式，配合光标下的内容使用）：</p>
+<table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">快捷键</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>cs find a symbol</code></td>
+<td align="left">无</td>
+<td align="left">查找<code>symbol</code>的赋值</td>
+</tr>
+<tr>
+<td align="left"><code>cs find c function</code></td>
+<td align="left"><code>ctrl+\ c</code></td>
+<td align="left">查找<code>function</code>的所有被调用</td>
+</tr>
+<tr>
+<td align="left"><code>cs find d function</code></td>
+<td align="left"><code>ctrl+\ d</code></td>
+<td align="left">查找<code>function</code>的所有调用</td>
+</tr>
+<tr>
+<td align="left"><code>cs find e egrep_pattern</code></td>
+<td align="left"><code>ctrl+\ e</code></td>
+<td align="left">通过<code>egrep</code>查找<code>egrep_pattern</code>的匹配</td>
+</tr>
+<tr>
+<td align="left"><code>cs find f file</code></td>
+<td align="left"><code>ctrl+\ f</code></td>
+<td align="left">查找<code>file</code>匹配的文件名</td>
+</tr>
+<tr>
+<td align="left"><code>cs find g symbol</code></td>
+<td align="left"><code>ctrl+\ g</code></td>
+<td align="left">查找<code>symbol</code>的定义</td>
+</tr>
+<tr>
+<td align="left"><code>cs find i file</code></td>
+<td align="left"><code>ctrl+\ i</code></td>
+<td align="left">查找<code>file</code>的所有被<code>#include</code></td>
+</tr>
+<tr>
+<td align="left"><code>cs find s symbol</code></td>
+<td align="left"><code>ctrl+\ s</code></td>
+<td align="left">查找<code>symbol</code>的匹配</td>
+</tr>
+<tr>
+<td align="left"><code>cs find t text_string</code></td>
+<td align="left"><code>ctrl+\ t</code></td>
+<td align="left">查找<code>text_string</code>的匹配</td>
+</tr>
+<tr>
+<td align="left"><code>cs help</code></td>
+<td align="left">无</td>
+<td align="left">帮助信息</td>
+</tr>
+</tbody></table>
+<p>注意，快捷键需要先按下<code>ctrl+\</code>，松开后再按后面的按键。<br>通过<code>.vimrc</code>中的<code>set cscopequickfix=s-,c-,d-,i-,t-,e-</code>，我们将部分类型的查找结果输出在quickfix窗口里，以下是有关quickfix窗口的比较常用的命令：</p>
+<table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>copen</code></td>
+<td align="left">打开quickfix窗口</td>
+</tr>
+<tr>
+<td align="left"><code>cclose</code></td>
+<td align="left">关闭quickfix窗口</td>
+</tr>
+<tr>
+<td align="left"><code>cfirst</code></td>
+<td align="left">移动到第一个结果</td>
+</tr>
+<tr>
+<td align="left"><code>clast</code></td>
+<td align="left">移动到最后一个结果</td>
+</tr>
+<tr>
+<td align="left"><code>cnext</code></td>
+<td align="left">移动到下一个结果</td>
+</tr>
+<tr>
+<td align="left"><code>cprev</code></td>
+<td align="left">移动到上一个结果</td>
+</tr>
+</tbody></table>
+<p>一些可能用到的快捷键：</p>
+<table>
+<thead>
+<tr>
+<th align="left">快捷键</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>ctrl+ww</code></td>
+<td align="left">循环切换窗口</td>
+</tr>
+<tr>
+<td align="left"><code>ctrl+]</code></td>
+<td align="left">类似<code>ctrl+\ g</code></td>
+</tr>
+<tr>
+<td align="left"><code>ctrl+t</code></td>
+<td align="left">返回上一位置</td>
+</tr>
+</tbody></table>
+<p>对于窗口间的切换，由于我们vim启用了鼠标，通过鼠标点击可以直接完成窗口切换。</p>
+<h2 id="vscode、clangd（推荐）"><a href="#vscode、clangd（推荐）" class="headerlink" title="vscode、clangd（推荐）"></a>vscode、clangd（推荐）</h2><h3 id="安装clangd扩展"><a href="#安装clangd扩展" class="headerlink" title="安装clangd扩展"></a>安装clangd扩展</h3><p>vscode的安装已在<a href="/2023/12/29/how-to-build-c-dev-env/" title="linux下搭建c语言开发环境">linux下搭建c语言开发环境</a>文中阐述，这里直接安装clangd扩展。在vscode的<code>Extensions</code>里搜索<code>clangd</code>并安装。<br>安装完成后，clangd扩展会提示与C&#x2F;C++扩展的<code>IntelliSense</code>冲突，按照提示将<code>Settings-&gt;Extensions-&gt;C/C++-&gt;C_Cpp:Intelli Sense Engine</code>设置为<code>disabled</code>即可。<br>后续使用过程中会clangd扩展会提示安装clangd，选择安装即可。</p>
+<h3 id="生成compile-commands-json"><a href="#生成compile-commands-json" class="headerlink" title="生成compile_commands.json"></a>生成compile_commands.json</h3><h4 id="准备工作-1"><a href="#准备工作-1" class="headerlink" title="准备工作"></a>准备工作</h4><p>先确认操作系统是否已经安装<code>bear</code>和<code>make</code>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">bear <span class="token parameter variable">--version</span>
+<span class="token function">make</span> <span class="token parameter variable">--version</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>如果已安装，则会打印出版本号，否则执行以下命令进行安装：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> bear
+<span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> <span class="token function">make</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>完成后再次尝试打印版本号，检查是否安装成功。<br>然后是交叉编译工具链，对于<code>arm64</code>的交叉编译工具链，我个人在arm官网下载了两个版本，一个是最新的<code>13.2.Rel1</code>，一个是<code>A-Profile</code>能下载到的最早的<code>8.2-2018.08</code>，用于编译较早版本的linux：</p>
+<ul>
+<li><code>13.2.Rel1</code>：到<a href="https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads">这里</a>，找到<code>13.2.Rel1</code>，<code>x86_64 Linux hosted cross toolchains</code>，<code>AArch64 GNU/Linux target (aarch64-none-linux-gnu)</code>，选择<code>arm-gnu-toolchain-13.2.rel1-x86_64-aarch64-none-linux-gnu.tar.xz</code>下载。</li>
+<li><code>8.2-2018.08</code>：到<a href="https://developer.arm.com/downloads/-/gnu-a">这里</a>，找到<code>8.2-2018.08</code>，<code>x86_64 hosted cross compilers</code>，<code>AArch64 GNU/Linux target (aarch64-linux-gnu)</code>，选择<code>gcc-arm-8.2-2018.08-x86_64-aarch64-linux-gnu.tar.xz</code>下载。</li>
+</ul>
+<p>下载完毕后，在存放下载文件的目录下执行以下命令：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">mkdir</span> /usr/local/toolchain
+<span class="token function">sudo</span> <span class="token function">tar</span> <span class="token parameter variable">-xvf</span> arm-gnu-toolchain-13.2.rel1-x86_64-aarch64-none-linux-gnu.tar.xz <span class="token parameter variable">-C</span> /usr/local/toolchain
+<span class="token function">sudo</span> <span class="token function">tar</span> <span class="token parameter variable">-xvf</span> gcc-arm-8.2-2018.08-x86_64-aarch64-linux-gnu.tar.xz <span class="token parameter variable">-C</span> /usr/local/toolchain<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>然后配置inux当前用户的Home目录下(&#x2F;home&#x2F;currentuser)找到<code>.bashrc</code>文件，如果没有则自行新增一个。在<code>.bashrc</code>中添加以下内容：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token environment constant">$PATH</span>:/usr/local/toolchain/arm-gnu-toolchain-13.2.Rel1-x86_64-aarch64-none-linux-gnu/bin:/usr/local/toolchain/gcc-arm-8.2-2018.08-x86_64-aarch64-linux-gnu/bin<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>以上<code>/usr/local/toolchain</code>可替换成自己希望的解压路径。如果<code>.bashrc</code>之前配置过<code>PATH</code>则直接在后面添加。<br>完成后我们可以打印出交叉编译工具链中的<code>gcc</code>版本：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">aarch64-linux-gnu-gcc <span class="token parameter variable">--version</span>
+aarch64-none-linux-gnu-gcc <span class="token parameter variable">--version</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>最后，安装以下软件包：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> libncurses5-dev
+<span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> bison
+<span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> flex
+<span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> libssl-dev<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="编译内核"><a href="#编译内核" class="headerlink" title="编译内核"></a>编译内核</h4><p>对于最近版本的linux源码来说，我们可以在<code>scripts/clang-tools</code>下找到用于生成<code>compile_commands.json</code>的<code>gen_compile_commands.py</code>文件，但是较早版本的linux源码是没有的，需要使用<code>bear</code>命令来生成<code>compile_commands.json</code>。下面通过<code>4.1.10</code>和<code>6.6.3</code>两个版本分别展示这两种方式。</p>
+<h5 id="linux-4-1-10"><a href="#linux-4-1-10" class="headerlink" title="linux 4.1.10"></a>linux 4.1.10</h5><p>在linux源码根目录下执行以下命令：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">make</span> distclean
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">ARCH</span><span class="token operator">=</span>arm64
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">CROSS_COMPILE</span><span class="token operator">=</span>aarch64-linux-gnu-
+<span class="token function">make</span> defconfig
+bear -- <span class="token function">make</span> <span class="token parameter variable">-j4</span> Image   <span class="token comment"># bear 3.0.18</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>其中<code>CROSS_COMPILE</code>可以通过交叉编译工具链的<code>bin</code>目录下所有文件的公共前缀得到：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ls</span> /usr/local/toolchain/gcc-arm-8.2-2018.08-x86_64-aarch64-linux-gnu/bin
+aarch64-linux-gnu-addr2line   aarch64-linux-gnu-gcov-tool
+aarch64-linux-gnu-ar          aarch64-linux-gnu-gdb
+aarch64-linux-gnu-as          aarch64-linux-gnu-gfortran
+aarch64-linux-gnu-c++         aarch64-linux-gnu-gprof
+aarch64-linux-gnu-c++filt     aarch64-linux-gnu-ld
+aarch64-linux-gnu-cpp         aarch64-linux-gnu-ld.bfd
+aarch64-linux-gnu-elfedit     aarch64-linux-gnu-nm
+aarch64-linux-gnu-g++         aarch64-linux-gnu-objcopy
+aarch64-linux-gnu-gcc         aarch64-linux-gnu-objdump
+aarch64-linux-gnu-gcc-8.2.1   aarch64-linux-gnu-ranlib
+aarch64-linux-gnu-gcc-ar      aarch64-linux-gnu-readelf
+aarch64-linux-gnu-gcc-nm      aarch64-linux-gnu-size
+aarch64-linux-gnu-gcc-ranlib  aarch64-linux-gnu-strings
+aarch64-linux-gnu-gcov        aarch64-linux-gnu-strip
+aarch64-linux-gnu-gcov-dump<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这里直接使用了<code>make defconfig</code>，即<code>arch/arm64/configs/defconfig</code>，如果需要，可以在<code>defconfig</code>的基础上<code>make menuconfig</code>，自行定制。<br>在编译过程中遇到了两个问题，这里记录下解决方案：</p>
+<ul>
+<li><code>multiple definition of &#39;yylloc&#39;</code>：修改<code>scripts/dtc/dtc-lexer.lex.c</code>中第640行<code>YYLTYPE yylloc;</code>为<code>extern YYLTYPE yylloc;</code>。</li>
+<li><code>include/linux/compiler-gcc.h:121:1: fatal error: linux/compiler-gcc8.h: No such file or directory</code>：在<code>include/linux</code>下执行<code>cp compiler-gcc5.h comilper-gcc8.h</code>。</li>
+</ul>
+<p>由于我们使用了<code>bear -- make Image -j4</code>，结束后，能在<code>arch/arm64/boot</code>下找到<code>Image</code>文件外，在linux源码根目录下能找到<code>compile_commands.json</code>。</p>
+<h5 id="linux-6-6-3"><a href="#linux-6-6-3" class="headerlink" title="linux 6.6.3"></a>linux 6.6.3</h5><p>在linux源码根目录下执行以下命令：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">make</span> distclean
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">ARCH</span><span class="token operator">=</span>arm64
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">CROSS_COMPILE</span><span class="token operator">=</span>aarch64-none-linux-gnu-
+<span class="token function">make</span> defconfig
+<span class="token function">make</span> <span class="token parameter variable">-j4</span> Image<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>结束后，能在<code>arch/arm64/boot</code>下找到<code>Image</code>文件。然后在<strong>linux源码根目录下执行以下命令</strong>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">./scripts/clang-tools/gen_compile_commands.py<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>这样就能在linux源码根目录下能找到<code>compile_commands.json</code>了。</p>
+<p>最后，我们在linux源码根目录下新建<code>build</code>文件夹，将<code>compile_commands.json</code>移动至该文件夹下。</p>
+<h4 id="使用vscode阅读源码"><a href="#使用vscode阅读源码" class="headerlink" title="使用vscode阅读源码"></a>使用vscode阅读源码</h4><p>用vscode打开linux源码根目录阅读源码时，会触发clangd建立索引，左下方的状态栏会显示<code>indexing</code>。等到索引建立完毕后右键符号就可以进行跳转定义，查找引用等操作了。这里推荐一个扩展<code>Back &amp; Forth</code>，安装后在编辑栏右上方能看到一个向左和一个向右的箭头，这使得我们能很轻松的在浏览过的位置间进行跳转。</p>
+]]></content>
       <tags>
         <tag>linux</tag>
         <tag>vscode</tag>
@@ -127,16 +1071,6 @@ Warning: Permanently added <span class="token string">'github.com'</span> <span 
         <tag>vim</tag>
         <tag>clangd</tag>
         <tag>bear</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用qemu调试linux kernel</title>
-    <url>/2023/12/29/how-to-use-qemu-to-dbg-linux/</url>
-    <content><![CDATA[]]></content>
-      <tags>
-        <tag>linux</tag>
-        <tag>qemu</tag>
-        <tag>arm64</tag>
       </tags>
   </entry>
 </search>
